@@ -1,0 +1,27 @@
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class DependencyTest {
+
+    @Test
+    public void stepb() {
+        System.out.println("stepb...");
+    }
+
+    @Test(dependsOnMethods = "stepb")
+    public void stepa() {
+        System.out.println("stepa...");
+        //Assert.assertTrue(true);
+    }
+
+    //@Test(dependsOnMethods = "stepa", alwaysRun = true)
+    @Test(dependsOnMethods = "stepa")
+    public void stepd() {
+        System.out.println("stepd...");
+    }
+
+    @Test(dependsOnMethods = {"stepd", "stepa"})
+    public void stepc() {
+        System.out.println("stepc...");
+    }
+}

@@ -1,7 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class DependencyTest {
+public class DependencyTest extends BaseTest{
 
     @Test
     public void stepb() {
@@ -11,7 +11,7 @@ public class DependencyTest {
     @Test(dependsOnMethods = "stepb")
     public void stepa() {
         System.out.println("stepa...");
-        //Assert.assertTrue(true);
+        Assert.assertTrue(false);
     }
 
     //@Test(dependsOnMethods = "stepa", alwaysRun = true)

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--thread-count="2" - сколько потоков -->
+<!--parallel="methods" - на каком уровне параллелить - на уровне методов
+ классов или test (проектов)-->
+<suite name="Main Suite" thread-count="2" parallel="methods">
+    <test name="Smoke">
+        <classes>
+            <class name="CalcTest"/>
+            <class name="DependencyTest"/>
+        </classes>
+    </test>
+    <test name="Regression">
+        <classes>
+            <class name="PriorityTest"/>
+            <class name="CalcTest"/>
+        </classes>
+    </test>
+</suite>

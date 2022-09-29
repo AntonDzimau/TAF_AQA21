@@ -26,7 +26,7 @@ public class CalcTest extends BaseTest {
 
     @Test(timeOut = 1000)
     public void waitLongTimeTest() throws InterruptedException {
-        Thread.sleep(1000); //мы спим секунду, как мы хотим выполнить тест за секунду
+        Thread.sleep(500); //мы спим секунду, как мы хотим выполнить тест за секунду
     }
 
     @Test (invocationCount = 3, invocationTimeOut = 1000, threadPoolSize = 3)
@@ -35,8 +35,7 @@ public class CalcTest extends BaseTest {
         Assert.assertEquals(calculator.sum(2, 3), 5, "Неверная сумма...");
     }
 
-   // @Test (dataProvider = "dataForSum", dataProviderClass = StaticProvider.class, threadPoolSize = 3)
-    @Test (dataProvider = "dataForSum", dataProviderClass = StaticProvider.class)
+    @Test (dataProvider = "dataForSum", dataProviderClass = StaticProvider.class, threadPoolSize = 3)
     public void testDataProvider(int a, int b, int expectedResult) {
         Assert.assertEquals(calculator.sum(a, b), expectedResult, "Неверная сумма...");
     }

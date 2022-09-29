@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- отсеиваем что именно мы выполняем-->
+<suite name="Main Suite"> <!--Вот этот сьют, назовем его Main-->
+    <test name="Smoke"> <!--Группу со следующими тестами мы назовем смоук, в нее запихнем то, что у нас ниже -->
+        <classes> <!--выбираем какие классы выполнять-->
+            <class name="AUnitTest"> <!--вот этот при чем не весь, а только-->
+                <methods>
+                    <include name="test"/> <!--этот метод-->
+                    <exclude name="firstTest"/> <!--если include убрать, то можно выполнить все КРОМЕ exclude-->
+                </methods>
+            </class>
+            <class name="CalcTest"/> <!--Весь класс калкТест-->
+            <class name="DependencyTest"/> <!--Весь класс ДэпТест-->
+        </classes>
+    </test>
+    <test name="Regression"> <!--Вторая группа у нас регрешн-->
+        <classes> <!--Тут тупо выполняем два класса-->
+            <class name="BUnitTest"/>
+            <class name="CalcTest"/>
+        </classes>
+    </test>
+</suite>
+        <!--ТО ЕСТЬ ЭТОТ ФАЙЛ НУЖЕН ДЛЯ ОПРЕДЕЛЕННОЙ СБОРКИ, МОЖЕМ ВЫПОЛНИТЬ ВЫБОРОЧНО
+        ОПРЕДЕЛЕННЫЕ ТЕСТЫ, МОЖЕМ СОЗАТЬ НЕСКОЛЬКО ТАКИХ ФАЙЛОВ ДЛЯ СМОУК И РЕГРЕШН НАПРИМЕР
+        ПО ОТДЕЛЬНОСТИ.-->

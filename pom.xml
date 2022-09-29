@@ -33,6 +33,10 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <!--подключение файла для дефолтного запуска из консоли-->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>target/test-classes/group.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
                 <dependencies>
                     <dependency>

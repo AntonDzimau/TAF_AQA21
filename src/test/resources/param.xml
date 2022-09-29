@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Main Suite">
-    <parameter name="login-value" value="user_1"/>
-    <parameter name="psw-value" value="123123"/>
+    <parameter name="firstNum-value" value="15"/>
+    <parameter name="secondNum-value" value="5"/>
     <test name="Groups Test">
         <classes>
-            <class name="ParamTest"/>
+            <class name="DivByParamTest">
+                <methods>
+                    <include name="DivByParamTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

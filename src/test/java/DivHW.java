@@ -48,13 +48,14 @@ public class DivHW extends BaseTest {
     }
 
     @Test(groups = "smoke", testName = "Div int nums by 0", expectedExceptions = ArithmeticException.class, priority = 6)
-    public void testExceptionsWithIntNumbs() {
-        Assert.assertEquals(calculator.div(17, 0), 17);
+    public void testExceptionsWithIntNumbs() throws ArithmeticException {
+        calculator.div(17, 0);
     }
 
     @Test(groups = "smoke", dependsOnMethods = "testExceptionsWithIntNumbs", testName = "Div double nums by 0", expectedExceptions = ArithmeticException.class, priority = 7)
     public void testExceptionsWithDoubleNumbs() {
-        Assert.assertEquals(calculator.div(23.7, 0), 23.7);
+        calculator.div(23.7, 0);
+        //Assert.assertEquals(calculator.div(23.7, 0), "Inf");
         /**Тест ПАДАЕТ, не ловит ошибку ArithmeticException by zero, а пишет актуальным результат - Infinity*/
     }
 }

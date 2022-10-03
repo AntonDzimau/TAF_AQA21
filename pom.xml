@@ -26,6 +26,11 @@
             <artifactId>selenium-java</artifactId>
             <version>4.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -38,7 +43,7 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-                    <!--подключение файла для дефолтного запуска из консоли-->
+                    <!--подключение файла для дефолтного запуска из консоли, из консоли запускается файл, который указан в теге-->
                     <suiteXmlFiles>
                         <suiteXmlFile>target/test-classes/group.xml</suiteXmlFile>
                     </suiteXmlFiles>

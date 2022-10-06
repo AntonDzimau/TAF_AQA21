@@ -23,7 +23,7 @@ public class ReadProperties {
         return properties.getProperty("browser");
     }
 
-    /*
+
         public static String username() {
             return properties.getProperty("username");
         }
@@ -31,7 +31,7 @@ public class ReadProperties {
         public static String password() {
             return properties.getProperty("password");
         }
-    */
+
     public static boolean isHeadless() {
         return properties.getProperty("headless").equalsIgnoreCase("true");
     }

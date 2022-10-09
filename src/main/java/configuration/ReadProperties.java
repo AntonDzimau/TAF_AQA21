@@ -24,13 +24,25 @@ public class ReadProperties {
     }
 
 
-        public static String username() {
-            return properties.getProperty("username");
-        }
+    public static String usernameStandard() {
+        return properties.getProperty("usernameStandard");
+    }
 
-        public static String password() {
-            return properties.getProperty("password");
-        }
+    public static String usernameLockedOut() {
+        return properties.getProperty("usernameLockedOut");
+    }
+
+    public static String usernameProblem() {
+        return properties.getProperty("usernameProblem");
+    }
+
+    public static String usernamePerformanceGlitch() {
+        return properties.getProperty("usernamePerformanceGlitch");
+    }
+
+    public static String password() {
+        return properties.getProperty("password");
+    }
 
     public static boolean isHeadless() {
         return properties.getProperty("headless").equalsIgnoreCase("true");

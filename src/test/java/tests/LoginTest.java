@@ -7,27 +7,36 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.TopMenuPage;
+import steps.LoginStep;
 
 public class LoginTest extends BaseTest {
     @Test
     public void successLoginTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginStep loginStep = new LoginStep(driver);
 
-        loginPage.loginSuccessful(ReadProperties.username(),ReadProperties.password());
-        loginPage.clickLoginButton();
+        loginStep.login(ReadProperties.username(),ReadProperties.password());
 
         Assert.assertTrue(new DashboardPage(driver).isPageOpened());
     }
 
     @Test
-    public void incorrectUsernameTest() {
-        //Какие-то действия
-        DashboardPage dashboardPage = new DashboardPage(driver);
+    public void successLoginTest1() {
 
+    Assert.assertEquals(loginStep.loginIncorrect("sdsd",ReadProperties.password()).getErrorTextElement().getText()
+            ,            "");
+    }
+
+    @Test
+    public void incorrectUsernameTest() {
+           DashboardPage dashboardPage = new DashboardPage(driver);
+        Assert.assertTrue(new DashboardPage(driver).isPageOpened());
+        Assert.assertEquals(new LoginPage(driver).getErrorTextElement().getText(),"");
     }
 
     @Test
     public void incorrectPasswordTest() {
 
     }
+
+
 }

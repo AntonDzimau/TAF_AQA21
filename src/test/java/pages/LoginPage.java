@@ -12,6 +12,7 @@ public class LoginPage extends BasePage {
     /**Все элементы хранятся на той странице, на которой они используются, а не в каком-то отдельном файле*/
     private final By passwordInputLocator = By.id("password");
     private final By loginButtonLocator = By.id("button_primary");
+    private final By errorTextLocator = By.className("error-text");
 
     //Блок инициализации страницы
     public LoginPage(WebDriver driver) {
@@ -47,10 +48,9 @@ public class LoginPage extends BasePage {
     public void clickLoginButton() {
         getLoginButton().click();
     }
+    public WebElement getErrorTextElement(){
+        return driver.findElement(errorTextLocator);
 
-    public void loginSuccessful(String email, String password) {
-        setEmail(email);
-        setPassword(password);
     }
 
 }

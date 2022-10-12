@@ -7,8 +7,9 @@ import org.openqa.selenium.WebDriver;
 public abstract class BasePage {
     protected WebDriver driver;
 
-    public BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver) throws Exception {
         this.driver = driver;
+
     }
 
     protected abstract By getPageIdentifier();

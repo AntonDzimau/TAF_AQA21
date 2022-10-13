@@ -1,6 +1,6 @@
 package steps;
 
-import BaseEntities.BaseStep;
+import baseEntities.BaseStep;
 import org.openqa.selenium.WebDriver;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -8,37 +8,31 @@ import pages.LoginPage;
 public class LoginStep extends BaseStep {
     LoginPage loginPage;
 
-    public LoginStep(WebDriver driver, LoginPage loginPage) {
-        super(driver);
-        this.loginPage = loginPage;
-    }
-
     public LoginStep(WebDriver driver) {
         super(driver);
         loginPage = new LoginPage(driver);
     }
+//просто метод для логина, мы хз какие данные и что вводится, корректно или нет
 
-    public void login(String email, String password) {
+    public void login(String email, String psw) {
         loginPage.setEmail(email);
-        loginPage.setPassword(password);
+        loginPage.setPsw(psw);
         loginPage.clickLoginButton();
     }
 
-    public DashboardPage loginSuccessful(String email, String password) {
-        login(email, password);
+    public DashboardPage loginSuccessful(String email, String psw) {
+        login(email, psw);
 
         return new DashboardPage(driver);
     }
 
-
-    public LoginPage loginIncorrect(String email, String password) {
-        login(email, password);
+    public LoginPage loginIncorrect(String email, String psw) {
+        login(email, psw);
 
         return loginPage;
     }
 
     public void logout() {
-
     }
 
 }

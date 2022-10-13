@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
+
 public class BrowsersService {
     private WebDriver driver = null;
 
@@ -49,6 +51,9 @@ public class BrowsersService {
     public WebDriver getDriver() {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
+        //неявные ожидания
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
+
         return driver;
     }
 }

@@ -1,42 +1,41 @@
 package tests;
 
-import BaseEntities.BaseTest;
+import baseEntities.BaseTest;
 import configuration.ReadProperties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
-import pages.TopMenuPage;
-import steps.LoginStep;
+import pages.projects.AddProjectPage;
+import pages.projects.UpdateProjectPage;
 
 public class LoginTest extends BaseTest {
+
+
     @Test
     public void successLoginTest() {
-        LoginStep loginStep = new LoginStep(driver);
-
-        loginStep.login(ReadProperties.username(),ReadProperties.password());
-
+        loginStep.login(ReadProperties.username(), ReadProperties.password());
         Assert.assertTrue(new DashboardPage(driver).isPageOpened());
     }
 
     @Test
     public void successLoginTest1() {
-
-    Assert.assertEquals(loginStep.loginIncorrect("sdsd",ReadProperties.password()).getErrorTextElement().getText()
-            ,            "");
+        Assert.assertTrue(
+                loginStep.loginSuccessful(ReadProperties.username(), ReadProperties.password())
+                .isPageOpened());
     }
 
     @Test
     public void incorrectUsernameTest() {
-           DashboardPage dashboardPage = new DashboardPage(driver);
-        Assert.assertTrue(new DashboardPage(driver).isPageOpened());
-        Assert.assertEquals(new LoginPage(driver).getErrorTextElement().getText(),"");
+        Assert.assertEquals(
+                loginStep.loginIncorrect("sdsd", ReadProperties.password())
+                        .getErrorTextElement().getText()
+                ,"Email/Login or Password is incorrect. Please try again.");
     }
 
     @Test
-    public void incorrectPasswordTest() {
-
+    public void incorrectPswTest() {
+        new UpdateProjectPage(driver).getNameInput();
+        new AddProjectPage(driver).getSaveButton();
     }
-
-
 }

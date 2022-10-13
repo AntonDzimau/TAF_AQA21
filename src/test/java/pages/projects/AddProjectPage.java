@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AddProjectsPage extends BaseProjectPage{
+public class AddProjectPage extends BaseProjectPage{
     private final By saveButtonLocator = By.id("accept");
 
-    public AddProjectsPage(WebDriver driver) {
+    public AddProjectPage(WebDriver driver) {
         super(driver);
     }
 
@@ -16,9 +16,7 @@ public class AddProjectsPage extends BaseProjectPage{
         return null;
     }
 
-    public WebElement getSaveButtonLocator() {
+    public WebElement getSaveButton(){
         return driver.findElement(saveButtonLocator);
     }
-
-
 }

@@ -1,4 +1,4 @@
-package BaseEntities;
+package baseEntities;
 
 import configuration.ReadProperties;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,7 @@ public class BaseTest {
     protected LoginStep loginStep;
 
     @BeforeMethod
-    public void setUp () {
+    public void setUp() {
         driver = new BrowsersService().getDriver();
         driver.get(ReadProperties.getUrl());
 
@@ -20,7 +20,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown(){
+    public void TearDown() {
         driver.quit();
     }
 }

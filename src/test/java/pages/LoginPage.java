@@ -1,20 +1,19 @@
 package pages;
 
-import BaseEntities.BasePage;
+import baseEntities.BasePage;
+import configuration.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-
 public class LoginPage extends BasePage {
-    //Блок описания селекторов для элементов
+    // 1. Блок описания селекторов для элементов
     private final By emailInputLocator = By.id("name");
-    /**Все элементы хранятся на той странице, на которой они используются, а не в каком-то отдельном файле*/
-    private final By passwordInputLocator = By.id("password");
+    private final By pswInputLocator = By.id("password");
     private final By loginButtonLocator = By.id("button_primary");
     private final By errorTextLocator = By.className("error-text");
 
-    //Блок инициализации страницы
+    // 2. Блок инициализации страницы
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -24,33 +23,26 @@ public class LoginPage extends BasePage {
         return loginButtonLocator;
     }
 
-    //Блок атомарных методов
+    // 3. Блок атомарных методов
     public WebElement getEmailInput() {
         return driver.findElement(emailInputLocator);
     }
-
-    public WebElement getPasswordInput() {
-        return driver.findElement(passwordInputLocator);
+    public WebElement getPswInput() {
+        return driver.findElement(pswInputLocator);
     }
-
     public WebElement getLoginButton() {
         return driver.findElement(loginButtonLocator);
     }
-
     public void setEmail(String value) {
         getEmailInput().sendKeys(value);
     }
-
-    public void setPassword(String value) {
-        getPasswordInput().sendKeys(value);
+    public void setPsw(String value) {
+        getPswInput().sendKeys(value);
     }
-
     public void clickLoginButton() {
         getLoginButton().click();
     }
-    public WebElement getErrorTextElement(){
+    public WebElement getErrorTextElement() {
         return driver.findElement(errorTextLocator);
-
     }
-
 }

@@ -1,8 +1,9 @@
 package pages.projects;
 
-import BaseEntities.BasePage;
+import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public abstract class BaseProjectPage extends BasePage {
     private final By nameInputLocator = By.id("name");
@@ -11,7 +12,7 @@ public abstract class BaseProjectPage extends BasePage {
         super(driver);
     }
 
-    public By getNameInputLocator() {
-        return nameInputLocator;
+    public WebElement getNameInput() {
+        return driver.findElement(nameInputLocator) ;
     }
 }

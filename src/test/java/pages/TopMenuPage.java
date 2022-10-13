@@ -1,16 +1,17 @@
 package pages;
 
-import BaseEntities.BasePage;
+import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+public class TopMenuPage extends BasePage{
+    //Ссылки для прямого доступа к ТОПМЕНЮ нет
+    // 1. Блок описания селекторов для элементов
+    //Один из них будет идентификатором открытия страницы
+    private final By pageIdentifier = By.xpath("");
 
-public class TopMenuPage extends BasePage {
-    /**Блок описания селекторов для элементов*/
-    private final By pageIdentifier = By.xpath("???");
-
-    /**Блок инициализации страницы*/
+    // 2. Блок инициализации страницы
     public TopMenuPage(WebDriver driver) {
         super(driver);
     }
@@ -19,16 +20,14 @@ public class TopMenuPage extends BasePage {
         return pageIdentifier;
     }
 
-    /**Блок атомарных методов*/
-    /*public WebElement getHeaderTitleLabel() {
-        return driver.findElement(headerTitleLabelLocator);
+    // 3. Блок атомарных методов
+/*    public WebElement getHeaderLogo() {
+       return driver.findElement(headerLogoLocator);
     }*/
 
-    /** С элементом Тайтл мы особо не взаимодействуем, нужен ли тут метод, который сразу
-     * проверяет Дисплэйд или нет. Подход есть, можно использовать.
-     */
-/*    public boolean isHeaderTitleLabelDisplayed() {
-        return driver.findElement(headerTitleLabelLocator).isDisplayed();
+    //!!! Подход, когда проверка наличия описывается в атомарном методе на странице
+/*    public boolean isHeaderLogoLocator() {
+       return getHeaderLogo().isDisplayed();
     }*/
 
 

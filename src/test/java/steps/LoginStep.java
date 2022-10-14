@@ -2,17 +2,18 @@ package steps;
 
 import baseEntities.BaseStep;
 import org.openqa.selenium.WebDriver;
-import pages.DashboardPage;
+import pages.CataloguePage;
 import pages.LoginPage;
 
 public class LoginStep extends BaseStep {
     LoginPage loginPage;
+    CataloguePage cataloguePage;
 
     public LoginStep(WebDriver driver) {
         super(driver);
         loginPage = new LoginPage(driver);
+        cataloguePage = new CataloguePage(driver);
     }
-//просто метод для логина, мы хз какие данные и что вводится, корректно или нет
 
     public void login(String email, String psw) {
         loginPage.setEmail(email);
@@ -20,19 +21,20 @@ public class LoginStep extends BaseStep {
         loginPage.clickLoginButton();
     }
 
-    public DashboardPage loginSuccessful(String email, String psw) {
-        login(email, psw);
-
-        return new DashboardPage(driver);
-    }
-
-    public LoginPage loginIncorrect(String email, String psw) {
-        login(email, psw);
-
+    public LoginPage logout() throws InterruptedException {
+        cataloguePage.topMenuBurgerPage.openBurgerMenu();
+        Thread.sleep(300);
+        cataloguePage.topMenuBurgerPage.getLogoutLink().click();
         return loginPage;
     }
 
-    public void logout() {
+    public CataloguePage loginSuccessful(String email, String psw) {
+        login(email, psw);
+        return cataloguePage;
     }
 
+    public LoginPage loginUnsuccessful(String email, String psw) {
+        login(email, psw);
+        return loginPage;
+    }
 }

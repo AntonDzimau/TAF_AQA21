@@ -9,22 +9,27 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <!-- переменные со значениями (версиями) тех или иных библиотек
+        обращаемся потом к этим версиям в зависимостях и далее-->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <aspectj.version>1.8.10</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <testng.version>7.6.1</testng.version>
+        <selenium.version>4.4.0</selenium.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.6.1</version>
+            <version>${testng.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.4.0</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>

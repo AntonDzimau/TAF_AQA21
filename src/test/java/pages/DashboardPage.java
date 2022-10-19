@@ -31,7 +31,7 @@ public class DashboardPage extends BasePage{
     }
     // 3. Блок атомарных методов
     public WebElement getHeaderLogo() {
-       return driver.findElement(headerLogoLocator);
+       return waitsService.waitForVisibilityBy(headerLogoLocator);
     }
 
     //!!! Подход, когда проверка наличия описывается в атомарном методе на странице

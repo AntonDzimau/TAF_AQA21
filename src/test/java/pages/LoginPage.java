@@ -25,13 +25,13 @@ public class LoginPage extends BasePage {
 
     // 3. Блок атомарных методов
     public WebElement getEmailInput() {
-        return driver.findElement(emailInputLocator);
+        return waitsService.waitForVisibilityBy(emailInputLocator);
     }
     public WebElement getPswInput() {
-        return driver.findElement(pswInputLocator);
+        return waitsService.waitForVisibilityBy(pswInputLocator);
     }
     public WebElement getLoginButton() {
-        return driver.findElement(loginButtonLocator);
+        return waitsService.waitForVisibilityBy(loginButtonLocator);
     }
     public void setEmail(String value) {
         getEmailInput().sendKeys(value);
@@ -43,6 +43,6 @@ public class LoginPage extends BasePage {
         getLoginButton().click();
     }
     public WebElement getErrorTextElement() {
-        return driver.findElement(errorTextLocator);
+        return waitsService.waitForVisibilityBy(errorTextLocator);
     }
 }

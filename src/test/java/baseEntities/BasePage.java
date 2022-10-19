@@ -3,12 +3,16 @@ package baseEntities;
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import services.WaitsService;
 
 public abstract class BasePage {
     protected WebDriver driver;
+    protected WaitsService waitsService;
 
     public BasePage(WebDriver driver)  {
         this.driver = driver;
+        waitsService = new WaitsService(driver);
         //Анализатор того, что страница открылась или не открылась
         //Плохо работает с dependencyInjection, т.к. хз, херня какая-то
         //потому что страницы инициализируются разными классами и вообще могут быть не видны еще

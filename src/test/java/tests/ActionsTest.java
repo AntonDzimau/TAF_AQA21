@@ -1,63 +1,58 @@
 package tests;
 
 import baseEntities.BaseTest;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import services.WaitsService;
 
-import java.net.URISyntaxException;
-import java.time.Duration;
-import java.util.List;
 
 public class ActionsTest extends BaseTest {
 
     @Test
-    public void hoverTest() throws InterruptedException {
-        driver.get("http://the-internet.herokuapp.com/hovers");
-        WaitsService wait = new WaitsService(driver, Duration.ofSeconds(10));
-        //дожидаемся что все элементы figure отображены на странице
-        List<WebElement> targetElements = wait.waitForAllVisibleElementsLocatedBy(By.cssSelector(".figure"));
-
-        Actions actions = new Actions(driver);
+    public void contextMenuTest() {
+        driver.get("http://the-internet.herokuapp.com/context_menu");
+        WebElement targetSquareBox = wait.waitForVisibilityBy(By.id("hot-spot"));
         actions
-                //зажать клавишу SHIFT
-                .keyDown(Keys.SHIFT)
-                //отпустить клавишу SHIFT
-                .keyUp(Keys.SHIFT)
-                //передвигаем мышку к краю элемента верхний левый угол и смещает на 10 пикселей вниз и вправо
-                .moveToElement(targetElements.get(0), 10, 10)
-                //кликаем на элемент (ссылка) после проверки ее существоваения
-                .click(wait.waitForExists(By.cssSelector("[href='/users/1']")))
-                //действия выше сразу не выполняются, собирается объект сначала
+                .moveToElement(targetSquareBox, 10, 10)
+                .contextClick()
                 .build()
-                //выполняем после сборки с командами, которые были выше
                 .perform();
-
-        Assert.assertTrue(wait.waitForElementInvisible(targetElements.get(0)));
+        Alert alert = driver.switchTo().alert();
+        Assert.assertEquals(alert.getText(), "You selected a context menu");
+        alert.accept();
+        Assert.assertTrue(targetSquareBox.isDisplayed());
     }
 
     @Test
-    public void fileUploadTest() throws InterruptedException, URISyntaxException {
-        driver.get("http://the-internet.herokuapp.com/upload");
+    public void dynamicControlsCheckBoxTest() {
+        driver.get("http://the-internet.herokuapp.com/dynamic_controls");
+        wait.waitForVisibilityBy(By.cssSelector("[label='blah']"));
+        actions
+                .click(wait.waitForVisibilityBy(By.cssSelector("[onclick='swapCheckbox()']")))
+                .build()
+                .perform();
+        Assert.assertEquals(wait.waitForVisibilityBy(By.id("message")).getText(), "It's gone!");
+    }
 
-        WaitsService wait = new WaitsService(driver, Duration.ofSeconds(10));
+    @Test
+    public void dynamicControlsInputTest() {
+        driver.get("http://the-internet.herokuapp.com/dynamic_controls");
+        WebElement input = wait.waitForVisibilityBy(By.cssSelector("#input-example input"));
+        Assert.assertFalse(input.isEnabled());
+        actions
+                .click(wait.waitForVisibilityBy(By.cssSelector("[onclick='swapInput()']")))
+                .build()
+                .perform();
+        Assert.assertEquals(wait.waitForVisibilityBy(By.id("message")).getText(), "It's enabled!");
+        Assert.assertTrue(input.isEnabled());
+    }
 
-        WebElement fileUploadPath = wait.waitForExists(By.id("file-upload"));
-        //находим путь к файлу
-        /**РАБОТА С ФАЙЛАМИ ИЗУЧАИТЬ*/
-        //String pathToFile = ActionsTest.class.getClassLoader().getResource("doc1.png").toURI().getRawPath();
-        String pathToFile = ActionsTest.class.getClassLoader().getResource("doc1.png").getPath();
-        //удаление слэша в начале
-       // String pathToFileFixed = pathToFile.substring(1, pathToFile.length());
-        System.out.println(pathToFile);
-        //fileUploadPath.sendKeys(pathToFileFixed);
-        fileUploadPath.sendKeys(pathToFile);
-        wait.waitForExists(By.id("file-submit")).submit();
-
-        Thread.sleep(5000);
+    @Test
+    public void frameTest() {
+        driver.get("http://the-internet.herokuapp.com/iframe");
+        driver.switchTo().frame("mce_0_ifr");
+        Assert.assertEquals(driver.findElement(By.cssSelector("body p")).getText(), "Your content goes here.");
     }
 }

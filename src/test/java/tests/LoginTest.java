@@ -2,6 +2,8 @@ package tests;
 
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
+import elements.CheckBox;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -16,6 +18,8 @@ public class LoginTest extends BaseTest {
     public void successLoginTest() {
         loginStep.login(ReadProperties.username(), ReadProperties.password());
         Assert.assertTrue(new DashboardPage(driver).isPageOpened());
+
+
     }
 
     @Test

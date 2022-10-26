@@ -1,7 +1,8 @@
 package pages;
 
 import baseEntities.BasePage;
-import configuration.ReadProperties;
+import elements.Button;
+import elements.UIElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,24 +26,31 @@ public class LoginPage extends BasePage {
 
     // 3. Блок атомарных методов
     public WebElement getEmailInput() {
-        return waitsService.waitForVisibilityBy(emailInputLocator);
+        return new UIElement(driver, waitsService.waitForVisibilityBy(emailInputLocator));
     }
-    public WebElement getPswInput() {
-        return waitsService.waitForVisibilityBy(pswInputLocator);
+
+    public UIElement getPswInput() {
+        return new UIElement(driver, pswInputLocator);
     }
-    public WebElement getLoginButton() {
-        return waitsService.waitForVisibilityBy(loginButtonLocator);
+
+    public Button getLoginButton() {
+        return new Button(driver, loginButtonLocator);
     }
+
     public void setEmail(String value) {
         getEmailInput().sendKeys(value);
     }
+
     public void setPsw(String value) {
         getPswInput().sendKeys(value);
     }
+
     public void clickLoginButton() {
         getLoginButton().click();
     }
     public WebElement getErrorTextElement() {
         return waitsService.waitForVisibilityBy(errorTextLocator);
     }
+
+
 }

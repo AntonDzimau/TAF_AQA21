@@ -21,10 +21,6 @@ public class DashboardPage extends BasePage{
         //непосредственно из DashboardPage
         topMenuPage = new TopMenuPage(driver);
     }
-    @Override
-    protected By getPageIdentifier() {
-        return headerLogoLocator;
-    }
 
     public void openPageByUrl() {
        super.openPageByUrl(pagePath);
@@ -35,7 +31,7 @@ public class DashboardPage extends BasePage{
     }
 
     //!!! Подход, когда проверка наличия описывается в атомарном методе на странице
-    public boolean isHeaderLogoLocator() {
+    public boolean isHeaderLogoDisplayed() {
        return getHeaderLogo().isDisplayed();
     }
 

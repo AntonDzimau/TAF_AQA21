@@ -15,10 +15,7 @@ public class TopMenuPage extends BasePage{
     public TopMenuPage(WebDriver driver) {
         super(driver);
     }
-    @Override
-    protected By getPageIdentifier() {
-        return pageIdentifier;
-    }
+
 
     // 3. Блок атомарных методов
 /*    public WebElement getHeaderLogo() {

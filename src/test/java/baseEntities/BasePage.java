@@ -3,6 +3,8 @@ package baseEntities;
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import services.WaitsService;
 
@@ -13,6 +15,8 @@ public abstract class BasePage {
     public BasePage(WebDriver driver)  {
         this.driver = driver;
         waitsService = new WaitsService(driver);
+
+        PageFactory.initElements(driver, this);
         //Анализатор того, что страница открылась или не открылась
         //Плохо работает с dependencyInjection, т.к. хз, херня какая-то
         //потому что страницы инициализируются разными классами и вообще могут быть не видны еще
@@ -35,11 +39,8 @@ public abstract class BasePage {
     //идентификатор конкретной страницы. Идентификатор отдастся родительскому BasePage, и она
     //сможет проверить отображается ли этот идентификатор на странице с помощью метода
     //isPageOpened()
-    protected abstract By getPageIdentifier();
 
-    public boolean isPageOpened() {
-        return driver.findElement(getPageIdentifier()).isDisplayed();
-    }
+
 
     public void openPageByUrl(String pagePath) {
         driver.get(ReadProperties.getUrl() + pagePath);

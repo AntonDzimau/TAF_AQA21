@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import pages.LoginPage;
 import pages.projects.AddProjectPage;
 import pages.projects.UpdateProjectPage;
 
@@ -18,8 +17,10 @@ public class LoginTest extends BaseTest {
     public void successLoginTest() {
         loginStep.login(ReadProperties.username(), ReadProperties.password());
         Assert.assertTrue(new DashboardPage(driver).isPageOpened());
-
-
+        //пример использования и реализации
+   /*     CheckBox checkBox = new CheckBox(driver, By.id("id"));
+        checkBox.removeFlag();
+        checkBox.setFlag();*/
     }
 
     @Test

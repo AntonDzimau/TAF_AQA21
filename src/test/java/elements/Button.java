@@ -11,7 +11,7 @@ public class Button {
         this.uiElement = new UIElement(driver, by);
     }
 
-    public Button(WebDriver driver, WebElement webElement) {
+    public Button (WebDriver driver, WebElement webElement) {
         this.uiElement = new UIElement(driver, webElement);
     }
 

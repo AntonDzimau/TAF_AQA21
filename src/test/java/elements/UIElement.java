@@ -3,7 +3,6 @@ package elements;
 import org.openqa.selenium.*;
 import services.WaitsService;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +21,7 @@ public class UIElement implements WebElement {
 
     public UIElement(WebDriver driver, WebElement webElement) {
         this.driver = driver;
+        this.waitsService = new WaitsService(driver);
         this.webElement = webElement;
     }
 
@@ -49,7 +49,7 @@ public class UIElement implements WebElement {
 
     @Override
     public void clear() {
-webElement.clear();
+        webElement.clear();
     }
 
     @Override
@@ -89,6 +89,7 @@ webElement.clear();
         }
         return list;
     }
+
     @Override
     public UIElement findElement(By by) {
         return new UIElement(driver, webElement.findElement(by));

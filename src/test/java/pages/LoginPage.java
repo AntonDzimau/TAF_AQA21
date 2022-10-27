@@ -2,6 +2,7 @@ package pages;
 
 import baseEntities.BasePage;
 import elements.Button;
+import elements.CheckBox;
 import elements.UIElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -48,9 +49,13 @@ public class LoginPage extends BasePage {
     public void clickLoginButton() {
         getLoginButton().click();
     }
+
     public WebElement getErrorTextElement() {
         return waitsService.waitForVisibilityBy(errorTextLocator);
     }
 
+    public CheckBox getCheckBox() {
+        return new CheckBox(driver, loginButtonLocator);
+    }
 
 }

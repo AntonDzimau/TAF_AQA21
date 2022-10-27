@@ -13,13 +13,16 @@ public class LoginStep extends BaseStep {
         super(driver);
         loginPage = new LoginPage(driver);
     }
-//просто метод для логина, мы хз какие данные и что вводится, корректно или нет
+
+    //просто метод для логина, мы хз какие данные и что вводится, корректно или нет
+    @Step
     public void login(String email, String psw) {
         loginPage.setEmail(email);
         loginPage.setPsw(psw);
         loginPage.clickLoginButton();
     }
 
+    //помечаем этой аннотацией, чтобы в отчете были степы, то есть более подробно описывался отчет
     @Step
     public DashboardPage loginSuccessful(String email, String psw) {
         login(email, psw);

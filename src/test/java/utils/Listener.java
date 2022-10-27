@@ -18,7 +18,7 @@ public class Listener extends BaseTest implements ITestListener {
     public void onTestFailure(ITestResult result) {
         try {
             Allure.addAttachment(UUID.randomUUID().toString(), new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
-
+            //строка ниже снимает скриншот
             byte[] srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             saveScreenshot(srcFile);
         } catch (Exception ex) {

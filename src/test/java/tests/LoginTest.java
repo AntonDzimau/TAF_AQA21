@@ -33,9 +33,9 @@ public class LoginTest extends BaseTest {
                 ,"Email/Login or Password is incorrect. Please try again.");
     }
 
-    @Test
+   /* @Test
     public void incorrectPswTest() {
         new UpdateProjectPage(driver).getNameInput();
         new AddProjectPage(driver).getSaveButton();
-    }
+    }*/
 }

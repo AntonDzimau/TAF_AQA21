@@ -11,25 +11,38 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <aspectj.version>1.8.10</aspectj.version>
+        <aspectj.version>1.9.5</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <testng.version>7.6.1</testng.version>
+        <selenium.version>4.4.0</selenium.version>
+        <webdrivermanager.version>5.2.1</webdrivermanager.version>
+        <allure.version>2.19.0</allure.version>
+        <test.suite.filename>general.xml</test.suite.filename>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.6.1</version>
+            <version>${testng.version}</version>
+            <!--необходимо для ограничения использования библиотеки,
+            например только в папке test-->
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.4.0</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.2.1</version>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
         </dependency>
     </dependencies>
 
@@ -44,9 +57,9 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <!--подключение файла для дефолтного запуска из консоли, из консоли запускается файл, который указан в теге-->
-                    <suiteXmlFiles>
+                    <!-- <suiteXmlFiles>
                         <suiteXmlFile>target/test-classes/group.xml</suiteXmlFile>
-                    </suiteXmlFiles>
+                    </suiteXmlFiles> -->
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -55,6 +68,16 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <reportVersion>2.7.0</reportVersion>
+                    <buildDirectory>.</buildDirectory>
+                    <reportDirectory>target/allure-results</reportDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>

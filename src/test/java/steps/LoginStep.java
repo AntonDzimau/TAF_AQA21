@@ -1,6 +1,7 @@
 package steps;
 
 import baseEntities.BaseStep;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pages.CataloguePage;
 import pages.LoginPage;
@@ -21,6 +22,7 @@ public class LoginStep extends BaseStep {
         loginPage.clickLoginButton();
     }
 
+    @Step
     public LoginPage logout() throws InterruptedException {
         cataloguePage.topMenuBurgerPage.openBurgerMenu();
         Thread.sleep(300);
@@ -28,11 +30,13 @@ public class LoginStep extends BaseStep {
         return loginPage;
     }
 
+    @Step
     public CataloguePage loginSuccessful(String email, String psw) {
         login(email, psw);
         return cataloguePage;
     }
 
+    @Step
     public LoginPage loginUnsuccessful(String email, String psw) {
         login(email, psw);
         return loginPage;

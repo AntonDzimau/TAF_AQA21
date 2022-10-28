@@ -1,10 +1,9 @@
 package steps;
 
 import baseEntities.BaseStep;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
 import pages.CataloguePage;
-import pages.LoginPage;
 
 public class SortStep extends BaseStep {
     CataloguePage cataloguePage;
@@ -14,11 +13,13 @@ public class SortStep extends BaseStep {
         cataloguePage = new CataloguePage(driver);
     }
 
+    @Step
     public String setSortByAlphabet(String value) {
         cataloguePage.selectMenu().selectByValue(value);
         return cataloguePage.getFirstItemByName().getText();
     }
 
+    @Step
     public String setSortByPrice(String value) {
         cataloguePage.selectMenu().selectByValue(value);
         return cataloguePage.getFirstItemByPrice().getText();

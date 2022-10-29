@@ -12,7 +12,6 @@ public class InvokedListener implements IInvokedMethodListener {
 
 
     public void afterInvocation(IInvokedMethod method, ITestResult result) {
-        //System.out.println("This method are invoked after every config method");
         if (result.getStatus() == ITestResult.FAILURE) {
             ITestContext iTestContext = result.getTestContext();
             WebDriver driver = (WebDriver) iTestContext.getAttribute("driver");

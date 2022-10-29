@@ -2,13 +2,10 @@ package tests;
 
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
-import elements.CheckBox;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
-import pages.projects.AddProjectPage;
-import pages.projects.UpdateProjectPage;
+import pages.projects.EditProjectPage;
 
 public class LoginTest extends BaseTest {
 
@@ -17,10 +14,6 @@ public class LoginTest extends BaseTest {
     public void successLoginTest() {
         loginStep.login(ReadProperties.username(), ReadProperties.password());
         Assert.assertTrue(new DashboardPage(driver).isPageOpened());
-        //пример использования и реализации
-   /*     CheckBox checkBox = new CheckBox(driver, By.id("id"));
-        checkBox.removeFlag();
-        checkBox.setFlag();*/
     }
 
     @Test
@@ -36,11 +29,5 @@ public class LoginTest extends BaseTest {
                 loginStep.loginIncorrect("sdsd", ReadProperties.password())
                         .getErrorTextElement().getText()
                 ,"Email/Login or Password is incorrect. Please try again.");
-    }
-
-    @Test
-    public void incorrectPswTest() {
-        new UpdateProjectPage(driver).getNameInput();
-        new AddProjectPage(driver).getSaveButton();
     }
 }

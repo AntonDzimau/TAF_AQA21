@@ -16,6 +16,14 @@ public class Button {
     }
 
     public void click() {
-        uiElement.click();
+        if (isEnabled()){
+            uiElement.click();
+        } else {
+            System.out.println("Button isn't enabled!");
+        }
+    }
+
+    public boolean isEnabled(){
+        return uiElement.isEnabled();
     }
 }

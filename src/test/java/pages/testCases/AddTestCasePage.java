@@ -1,14 +1,15 @@
-package pages.projects;
+package pages.testCases;
 
 import elements.Button;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class AddProjectPage extends BaseProjectPage{
-    private final static String pagePath = "index.php?/admin/projects/add";
-    private final By acceptButtonLocator = By.xpath("//button[contains(.,'Save Project')]");
+public class AddTestCasePage extends BaseTestCasePage {
 
-    public AddProjectPage(WebDriver driver) {
+    private final static String pagePath = "index.php?/cases/add/1";
+    private final By acceptButtonLocator = By.xpath("//button[contains(.,'Add Test Case')]");
+
+    public AddTestCasePage(WebDriver driver) {
         super(driver);
     }
 
@@ -16,6 +17,7 @@ public class AddProjectPage extends BaseProjectPage{
     protected By getPageIdentifier() {
         return acceptButtonLocator;
     }
+
     public void openPageByUrl() {
         super.openPageByUrl(pagePath);
     }

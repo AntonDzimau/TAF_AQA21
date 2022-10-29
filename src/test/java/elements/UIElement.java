@@ -33,7 +33,6 @@ public class UIElement implements WebElement {
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", webElement);
             webElement.click();
         }
-
     }
 
     @Override

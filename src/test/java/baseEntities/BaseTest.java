@@ -8,7 +8,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import services.BrowsersService;
+import steps.projectSteps.AddProjectStep;
+import steps.reportsStep.ActivitySummaryStep;
+import steps.projectSteps.EditProjectStep;
 import steps.LoginStep;
+import steps.testCaseSteps.TestCasesStep;
 import utils.InvokedListener;
 
 
@@ -16,6 +20,10 @@ import utils.InvokedListener;
 public class BaseTest {
     protected WebDriver driver;
     protected LoginStep loginStep;
+    protected AddProjectStep addProjectStep;
+    protected EditProjectStep editProjectStep;
+    protected TestCasesStep testCasesStep;
+    protected ActivitySummaryStep activitySummaryStep;
 
     @BeforeMethod
     @Description("Настройка")
@@ -25,6 +33,10 @@ public class BaseTest {
         driver.get(ReadProperties.getUrl());
 
         loginStep = new LoginStep(driver);
+        addProjectStep = new AddProjectStep(driver);
+        editProjectStep = new EditProjectStep(driver);
+        testCasesStep = new TestCasesStep(driver);
+        activitySummaryStep = new ActivitySummaryStep(driver);
     }
 
     @AfterMethod

@@ -12,7 +12,7 @@ import pages.projects.UpdateProjectPage;
 public class LoginTest extends BaseTest {
 
 
-    @Test
+    /*@Test
     public void successLoginTest() {
         loginStep.login(ReadProperties.username(), ReadProperties.password());
         Assert.assertTrue(new DashboardPage(driver).isPageOpened());
@@ -31,7 +31,7 @@ public class LoginTest extends BaseTest {
                 loginStep.loginIncorrect("sdsd", ReadProperties.password())
                         .getErrorTextElement().getText()
                 ,"Email/Login or Password is incorrect. Please try again.");
-    }
+    }*/
 
    /* @Test
     public void incorrectPswTest() {

@@ -17,19 +17,6 @@ public abstract class BasePage {
         waitsService = new WaitsService(driver);
 
         PageFactory.initElements(driver, this);
-        //Анализатор того, что страница открылась или не открылась
-        //Плохо работает с dependencyInjection, т.к. хз, херня какая-то
-        //потому что страницы инициализируются разными классами и вообще могут быть не видны еще
-        //и будет кидаться эксэпшн, но фрэймворк менее гибкий
-/*        if (!isPageOpened()) {
-            int i = 0;
-            while (i < 30 && isPageOpened()) {
-                Thread.sleep(1000);
-            }
-        }
-        if (!isPageOpened()){
-            throw new Exception("Page has not been opened");
-        }*/
     }
     //Метод для проверки того, что страница открыта. Обычно выбирается элемент,
     //который загружается позже всего. И скорее всего элемент скорее всего будет

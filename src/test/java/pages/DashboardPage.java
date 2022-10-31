@@ -7,10 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class DashboardPage extends BasePage{
-    //Ссылка для прямого доступа на страницу
+
     private final static String pagePath = "index.php?/dashboard";
-    // 1. Блок описания селекторов для элементов
-    //Один из них будет идентификатором открытия страницы
+
     private final By headerLogoLocator = By.xpath("//div[contains(text(),'TestRail QA')]");
     public TopMenuPage topMenuPage;
     // 2. Блок инициализации страницы

@@ -1,7 +1,10 @@
 package pages.testCases;
 
 import baseEntities.BasePage;
-import elements.*;
+import elements.Button;
+import elements.DropDown;
+import elements.Input;
+import elements.Textarea;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -11,14 +14,14 @@ public abstract class BaseTestCasePage extends BasePage {
     private final By stepsAreaLocator = By.id("custom_steps_display");
     private final By expectedResultAreaLocator = By.id("custom_expected_display");
     private final By cancelButtonLocator = By.className("case-form-cancel");
-    private final By prioritySelectLocator = By.id("priority_id");
-    private final By priorityChosenTextLocator = By.cssSelector("div#priority_id_chzn span");
-
+    private final By priorityMenuLocator = By.id("priority_id_chzn");
+    private final By templateMenuLocator = By.id("template_id_chzn");
+    private final By typeMenuLocator = By.id("type_id_chzn");
+    private final By automationMenuLocator = By.id("custom_automation_type_chzn");
 
     public BaseTestCasePage(WebDriver driver) {
         super(driver);
     }
-
 
     public Input getTitleInput() {
         return new Input(driver, waitsService.waitForVisibilityBy(titleInputLocator));
@@ -28,17 +31,23 @@ public abstract class BaseTestCasePage extends BasePage {
         return new Textarea(driver, waitsService.waitForVisibilityBy(preconditionsAreaLocator));
     }
 
-    public DropDown getPrioritySelect() {
-        return new DropDown(driver, waitsService.waitForVisibilityBy(prioritySelectLocator));
+    public DropDown getPriorityMenu() {
+        return new DropDown(driver, waitsService.waitForVisibilityBy(priorityMenuLocator));
     }
 
-    public Span getPriorityChosenText() {
-        return new Span(driver, waitsService.waitForVisibilityBy(priorityChosenTextLocator));
+    public DropDown getTemplateMenu() {
+        return new DropDown(driver, waitsService.waitForVisibilityBy(templateMenuLocator));
+    }
+
+    public DropDown getTypeMenu() {
+        return new DropDown(driver, waitsService.waitForVisibilityBy(typeMenuLocator));
+    }
+
+    public DropDown getAutomationMenu() {
+        return new DropDown(driver, waitsService.waitForVisibilityBy(automationMenuLocator));
     }
 
     public Button getCancelButton() {
         return new Button(driver, waitsService.waitForVisibilityBy(cancelButtonLocator));
     }
-
-
 }

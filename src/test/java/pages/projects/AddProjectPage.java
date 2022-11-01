@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class AddProjectPage extends BaseProjectPage{
     private final static String pagePath = "index.php?/admin/projects/add";
-    private final By acceptButtonLocator = By.xpath("//button[contains(.,'Save Project')]");
+    private final By acceptButtonLocator = By.xpath("//button[contains(.,'Add Project')]");
 
     public AddProjectPage(WebDriver driver) {
         super(driver);
@@ -16,6 +16,7 @@ public class AddProjectPage extends BaseProjectPage{
     protected By getPageIdentifier() {
         return acceptButtonLocator;
     }
+
     public void openPageByUrl() {
         super.openPageByUrl(pagePath);
     }

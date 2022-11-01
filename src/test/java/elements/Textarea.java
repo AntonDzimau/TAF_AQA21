@@ -31,4 +31,9 @@ public class Textarea {
         uiElement.clear();
     }
 
+    public void rewrite(String newValue){
+        clear();
+        sendKeys(newValue);
+    }
+
 }

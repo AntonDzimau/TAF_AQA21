@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class EditProjectPage extends BaseProjectPage {
-    private final static String pagePath = "index.php?/admin/projects/edit/1";
-    private final By acceptButtonLocator = By.xpath("//button[contains(.,'Add Project')]");
+    private final static String pagePath = "index.php?/admin/projects/edit/11";
+    private final By acceptButtonLocator = By.xpath("//button[contains(.,'Save Project')]");
     private final By completedProjectCheckBoxLocator = By.id("is_completed");
 
     public EditProjectPage(WebDriver driver) {

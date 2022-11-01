@@ -31,4 +31,9 @@ public class Input {
         uiElement.clear();
     }
 
+    public void rewrite(String newValue) {
+        clear();
+        sendKeys(newValue);
+    }
+
 }

@@ -5,9 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class EditTestCasePage extends BaseTestCasePage {
-    private final static String pagePath = "index.php?/cases/edit/1";
+    private final static String pagePath = "index.php?/admin/projects/edit/11";
     private final By acceptButtonLocator = By.xpath("//button[contains(.,'Save Test Case')]");
-    private final By acceptAndNextButtonLocator = By.id("accept_and_next");
+
 
     public EditTestCasePage(WebDriver driver) {
         super(driver);
@@ -26,7 +26,5 @@ public class EditTestCasePage extends BaseTestCasePage {
         return new Button(driver, waitsService.waitForVisibilityBy(acceptButtonLocator));
     }
 
-    public Button getAcceptAndNextButton() {
-        return new Button(driver, waitsService.waitForVisibilityBy(acceptAndNextButtonLocator));
-    }
+
 }

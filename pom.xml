@@ -19,6 +19,7 @@
         <selenium.version>4.4.0</selenium.version>
         <webdrivermanager.version>5.2.1</webdrivermanager.version>
         <allure.version>2.19.0</allure.version>
+        <lombok.version>1.18.24</lombok.version>
         <test.suite.filename>general.xml</test.suite.filename>
     </properties>
 
@@ -48,6 +49,12 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

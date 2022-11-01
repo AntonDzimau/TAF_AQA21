@@ -45,6 +45,33 @@ public class Table {
         return list.get(columnNumber);
     }
 
+    public UIElement getCell(int rowNumber, String columnName) {
+        TableRow row = getRow(rowNumber);
+        ArrayList<UIElement> list = row.findUIElements(By.tagName("td"));
+        UIElement targetCell = null;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getText().contains(columnName)) {
+                targetCell = list.get(i);
+            }
+        }
+        return targetCell;
+    }
+
+    public boolean findInTable(String value) {
+        ArrayList<UIElement> listOfRows = uiElement.findUIElements(By.tagName("tr"));
+        boolean flag = false;
+        for (int i = 0; i < listOfRows.size(); i++) {
+            ArrayList<UIElement> listOfColumns = listOfRows.get(i).findUIElements(By.cssSelector("td a"));
+            for (int j = 0; j < listOfColumns.size(); j++) {
+                if (listOfColumns.get(j).getText().contains(value)) {
+                    //System.out.println(listOfColumns.get(j).getText());
+                    flag = true;
+                }
+            }
+        }
+        return flag;
+    }
+
     public UIElement getElementFromCell(UIElement cellElement, By by) {
         return cellElement.findElement(by);
     }

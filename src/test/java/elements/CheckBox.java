@@ -23,6 +23,10 @@ public class CheckBox {
         click(false);
     }
 
+    public void flag(boolean value) {
+        click(value);
+    }
+
     public boolean isSelected() {
         return uiElement.isSelected();
     }

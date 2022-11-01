@@ -24,10 +24,10 @@ public class BrowsersService {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setHeadless(ReadProperties.isHeadless());
                 chromeOptions.addArguments("--disable-gpu");
-                //chromeOptions.addArguments("--window-size=1920,1200");
+                chromeOptions.addArguments("--window-size=1024,768");
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 chromeOptions.addArguments("--silent");
-                chromeOptions.addArguments("--start-maximized");
+                //chromeOptions.addArguments("--start-maximized");
 
                 driver = new ChromeDriver(chromeOptions);
 
@@ -50,7 +50,7 @@ public class BrowsersService {
     }
 
     public WebDriver getDriver() {
-        driver.manage().window().setSize(new Dimension(1024, 768));
+        //driver.manage().window().setSize(new Dimension(1024, 768));
         //driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         //неявные ожидания

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class AddTestCasePage extends BaseTestCasePage {
 
-    private final static String pagePath = "index.php?/cases/add/10";
+    private final static String pagePath = "index.php?/cases/add/19";
     private final By acceptButtonLocator = By.xpath("//button[contains(.,'Add Test Case')]");
     private final By acceptAndNextButtonLocator = By.id("accept_and_next");
 

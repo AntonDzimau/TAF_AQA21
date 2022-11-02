@@ -8,10 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import services.BrowsersService;
-import steps.AddProjectStep;
-import steps.EditProjectStep;
-import steps.LoginStep;
-import steps.AddTestCaseStep;
+import steps.*;
 import utils.InvokedListener;
 
 
@@ -22,6 +19,7 @@ public class BaseTest {
     protected AddProjectStep addProjectStep;
     protected EditProjectStep editProjectStep;
     protected AddTestCaseStep addTestCaseStep;
+    protected RemoveProjectStep removeProjectStep;
 
     @BeforeMethod
     @Description("Настройка")
@@ -34,6 +32,7 @@ public class BaseTest {
         addProjectStep = new AddProjectStep(driver);
         editProjectStep = new EditProjectStep(driver);
         addTestCaseStep = new AddTestCaseStep(driver);
+        removeProjectStep = new RemoveProjectStep(driver);
     }
 
     @AfterMethod

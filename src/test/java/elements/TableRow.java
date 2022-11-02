@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 public class TableRow {
     private UIElement uiElement;
+    private WebDriver driver;
 
     public TableRow(WebDriver driver, By by) {
+        this.driver = driver;
         this.uiElement = new UIElement(driver, by);
     }
 
@@ -25,9 +27,15 @@ public class TableRow {
         return uiElement.findUIElements(by);
     }
 
-    public UIElement getCell(int columnNumber) {
-        ArrayList<UIElement> list = uiElement.findUIElements(By.tagName("td"));
+    public ArrayList<TableCell> getListOfCellsInRow() {
+        ArrayList<TableCell> list = new ArrayList<>();
+        for (int i = 0; i < findUIElements(By.tagName("td")).size(); i++) {
+            list.add(new TableCell(driver, findUIElements(By.tagName("td")).get(i)));
+        }
+        return list;
+    }
 
-        return list.get(columnNumber);
+    public TableCell getCell(int columnNumber) {
+        return getListOfCellsInRow().get(columnNumber);
     }
 }

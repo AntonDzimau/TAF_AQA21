@@ -21,6 +21,27 @@ public class Table {
         this.uiElement = new UIElement(driver, webElement);
     }
 
+
+    public ArrayList<UIElement> findUIElements(By by) {
+        return uiElement.findUIElements(by);
+    }
+
+    public boolean isFoundInTable(String value) {
+        ArrayList<UIElement> listOfRows = uiElement.findUIElements(By.tagName("tr"));
+        boolean flag = false;
+        for (int i = 0; i < listOfRows.size(); i++) {
+            ArrayList<UIElement> listOfColumns = listOfRows.get(i).findUIElements(By.cssSelector("td a"));
+            for (int j = 0; j < listOfColumns.size(); j++) {
+                if (listOfColumns.get(j).getText().contains(value)) {
+                    //System.out.println(listOfColumns.get(j).getText());
+                    flag = true;
+                }
+            }
+        }
+        return flag;
+    }
+
+
     public UIElement getCell(String columnName, int rowNumber) {
         return null;
     }
@@ -29,16 +50,7 @@ public class Table {
         return null;
     }
 
-    private List<UIElement> getColumns() {
-        return uiElement.findUIElements(By.tagName("th"));
-    }
-
-    public TableRow getRow(int i) {
-        ArrayList<UIElement> list = uiElement.findUIElements(By.tagName("tr"));
-        return new TableRow(driver, list.get(i));
-    }
-
-    public UIElement getCell(int columnNumber, int rowNumber) {
+    public UIElement getCell( int rowNumber, int columnNumber) {
         TableRow row = getRow(rowNumber);
         ArrayList<UIElement> list = row.findUIElements(By.tagName("td"));
 
@@ -57,19 +69,36 @@ public class Table {
         return targetCell;
     }
 
-    public boolean findInTable(String value) {
+    private List<UIElement> getColumns() {
+        return uiElement.findUIElements(By.tagName("th"));
+    }
+
+    private ArrayList<TableRow> getListOfRows() {
+        ArrayList<TableRow> list = new ArrayList<>();
+        for (WebElement element : uiElement.findElements(By.tagName("tr"))) {
+            list.add(new TableRow(driver, element));
+        }
+        return list;
+    }
+
+    public TableRow getRow(int rowNumber) {
+        ArrayList<UIElement> list = uiElement.findUIElements(By.tagName("tr"));
+        return new TableRow(driver, list.get(rowNumber));
+    }
+
+    public TableRow getRow(String value) {
         ArrayList<UIElement> listOfRows = uiElement.findUIElements(By.tagName("tr"));
-        boolean flag = false;
-        for (int i = 0; i < listOfRows.size(); i++) {
+        TableRow targetRow = null;
+        for (int i = 0; i < getListOfRows().size(); i++) {
             ArrayList<UIElement> listOfColumns = listOfRows.get(i).findUIElements(By.cssSelector("td a"));
             for (int j = 0; j < listOfColumns.size(); j++) {
                 if (listOfColumns.get(j).getText().contains(value)) {
-                    //System.out.println(listOfColumns.get(j).getText());
-                    flag = true;
+                    System.out.println(listOfColumns.get(j).getText());
+                    targetRow = getListOfRows().get(i);
                 }
             }
         }
-        return flag;
+        return targetRow;
     }
 
     public UIElement getElementFromCell(UIElement cellElement, By by) {

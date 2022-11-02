@@ -2,18 +2,14 @@ package tests;
 
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
-import elements.DropDown;
-import elements.UIElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.testCases.TestCaseDetailsPage;
 
-public class WrapperOfDropDownTest extends BaseTest {
+public class TestCasesTest extends BaseTest {
 
     @Test
-    public void createProjectByNumbersTest() {
+    public void createTestCaseByNumbersTest() {
         loginStep.loginSuccessful(ReadProperties.username(), ReadProperties.password());
         addTestCaseStep.createNewTestCaseByNumbers();
 
@@ -27,7 +23,7 @@ public class WrapperOfDropDownTest extends BaseTest {
     }
 
     @Test
-    public void createProjectByNamesTest() {
+    public void createTestCaseByNamesTest() {
         loginStep.loginSuccessful(ReadProperties.username(), ReadProperties.password());
         addTestCaseStep.createNewTestCaseByNames();
 
@@ -41,7 +37,7 @@ public class WrapperOfDropDownTest extends BaseTest {
     }
 
     @Test
-    public void createProjectByKeysTest() throws InterruptedException {
+    public void createTestCaseByKeysTest() throws InterruptedException {
         loginStep.loginSuccessful(ReadProperties.username(), ReadProperties.password());
         addTestCaseStep.createNewTestCaseByKeys();
 

@@ -6,8 +6,7 @@ import configuration.ReadProperties;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.CartPage;
-import pages.HeaderPage;
+
 
 @Features(value = {@Feature(value = "Возможность добавления товаров в корзину."), @Feature(value = "Возможность удаления товаров из корзины.")})
 public class CartTest extends BaseTest {
@@ -16,8 +15,9 @@ public class CartTest extends BaseTest {
     @Story("Test Case 1")
     @Description("Проверка возможности открытия корзины")
     public void openCartTest() {
-        loginStep.loginSuccessful(ReadProperties.usernameStandard(), ReadProperties.password());
-        Assert.assertTrue(new CartPage(driver).cartLabel.isDisplayed());
+        Assert.assertTrue(loginStep.loginSuccessful(ReadProperties.usernameStandard(), ReadProperties.password())
+                .headerPage.cartButton
+                .isDisplayed());
     }
 
     @Test(description = "Добавление одного товара в корзину", priority = 6)
@@ -28,20 +28,31 @@ public class CartTest extends BaseTest {
     @Description("Проверка возможности добавления Sauce Labs Backpack в корзину")
     public void addBackpackToCartTest() {
         loginStep.loginSuccessful(ReadProperties.usernameStandard(), ReadProperties.password());
-        addItemToCartStep.addItemToCart(ReadItemsProperties.getIdToAddBackPack());
-        Assert.assertEquals(new HeaderPage(driver).shoppingCartBadge.getText(), "1");
-        Assert.assertTrue(new CartPage(driver).cartItemsName.get(0).getText().contains("Sauce Labs Backpack"));
+        Assert.assertTrue(addItemToCartStep.addItemToCartAndOpenCart(ReadItemsProperties.getIdToAddBackPack())
+                .cartItemsName.get(0).getText()
+                .contains("Sauce Labs Backpack"));
     }
 
     @Test(description = "Добавление всех товаров в корзину", priority = 6)
     @Story("Test Case 3")
     @Description("Проверка возможности добавления всех товаров из каталога в корзину")
-    public void addAllItemsToCart() {
+    public void addAllItemsToCartTest() {
         loginStep.loginSuccessful(ReadProperties.usernameStandard(), ReadProperties.password());
-        addItemToCartStep.addAllItemsToCart();
-        Assert.assertEquals(new HeaderPage(driver).shoppingCartBadge.getText(), "6");
-        Assert.assertEquals(new CartPage(driver).cartItemsName.size() + "", "6");
+        Assert.assertEquals(
+                addItemToCartStep.addAllItemsToCartAndOpenCart().cartItemsName.size()
+                , 6);
     }
+
+    @Test(description = "Отображение количества добавленных в корзину товаров на значке корзины", priority = 6)
+    @Story("Test Case 3")
+    @Description("Проверка отображения количества добавленных товаров в корзину")
+    public void quantityOfItemsInCartLabelTest() {
+        loginStep.loginSuccessful(ReadProperties.usernameStandard(), ReadProperties.password());
+        Assert.assertEquals(addItemToCartStep.addItemToCartAndOpenCart(ReadItemsProperties.getIdToAddBackPack())
+                .headerPage.shoppingCartBadge.getText()
+                , "1");
+    }
+
 
     @Test(description = "Удаление одного товара из корзины", priority = 6)
     @Severity(SeverityLevel.CRITICAL)
@@ -49,7 +60,8 @@ public class CartTest extends BaseTest {
     @Description("Проверка возможности удаления Sauce Labs Backpack из корзины")
     public void removeBackpackFromCartPageTest() {
         addBackpackToCartTest();
-        removeItemFromCartStep.removeItemFromCartPage(ReadItemsProperties.getIdToRemoveBackPack());
-        Assert.assertEquals(new CartPage(driver).cartItemsName.size(), 0);
+        Assert.assertEquals(
+                removeItemFromCartStep.removeItemFromCartPageAndOpenCart(ReadItemsProperties.getIdToRemoveBackPack())
+                        .cartItemsName.size(),0);
     }
 }

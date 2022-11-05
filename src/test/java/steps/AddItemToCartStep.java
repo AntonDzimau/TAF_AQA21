@@ -17,19 +17,23 @@ public class AddItemToCartStep extends BaseStep {
     }
 
     @Step
-    public void addItemToCart(String value) {
+    public CartPage addItemToCartAndOpenCart(String value) {
         for (int i = 0; i < cataloguePage.addToCartButtons.size(); i++) {
             if (cataloguePage.addToCartButtons.get(i).getAttribute("id").contains(value)) {
                 cataloguePage.addToCartButtons.get(i).click();
             }
         }
+        cataloguePage.headerPage.openCart();
+        return cartPage;
     }
 
     @Step
-    public void addAllItemsToCart() {
+    public CartPage addAllItemsToCartAndOpenCart() {
         for (int i = cataloguePage.addToCartButtons.size(); i > 0; i--) {
             cataloguePage.addToCartButtons.get(0).click();
         }
+        cataloguePage.headerPage.openCart();
+        return cartPage;
     }
 /*
     @Step

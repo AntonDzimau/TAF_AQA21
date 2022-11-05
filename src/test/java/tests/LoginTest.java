@@ -59,7 +59,7 @@ public class LoginTest extends BaseTest {
     @Story("Test Case 9")
     @Description("Проверка возможности выхода пользователя из личного кабинета")
     public void logoutUserTest() {
-        successLoginTest();
+        loginStep.loginSuccessful(ReadProperties.usernameStandard(), ReadProperties.password());
         Assert.assertTrue(
                 loginStep.logout()
                         .usernameInput.isDisplayed());

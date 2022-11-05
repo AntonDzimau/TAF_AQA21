@@ -17,7 +17,7 @@ public class RemoveItemFromCartStep extends BaseStep {
     }
 
     @Step
-    public CartPage removeItemFromCartPage(String value) {
+    public CartPage removeItemFromCartPageAndOpenCart(String value) {
         for (int i = 0; i < cataloguePage.removeFromCartButtons.size(); i++) {
             if (cataloguePage.removeFromCartButtons.get(i).getAttribute("id").contains(value)) {
                 cataloguePage.removeFromCartButtons.get(i).click();

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 @Feature("Сортировка товаров в каталоге.")
 public class SortTest extends BaseTest {
 
-    @Test(description = "Сортировка по алфавиту")
+    @Test(description = "Сортировка по алфавиту", priority = 7)
     @Severity(SeverityLevel.NORMAL)
     @Story("Test Case 10")
     @Description("Проверка сортировки товаров в каталоге по алфавиту в прямом порядке")
@@ -20,7 +20,7 @@ public class SortTest extends BaseTest {
                 , "Sauce Labs Backpack");
     }
 
-    @Test(description = "Сортировка по алфавиту")
+    @Test(description = "Сортировка по алфавиту", priority = 7)
     @Severity(SeverityLevel.NORMAL)
     @Story("Test Case 11")
     @Description("Проверка сортировки товаров в каталоге по алфавиту в обратном порядке")
@@ -31,7 +31,7 @@ public class SortTest extends BaseTest {
                 , "Test.allTheThings() T-Shirt (Red)");
     }
 
-    @Test(description = "Сортировка по цене")
+    @Test(description = "Сортировка по цене", priority = 7)
     @Severity(SeverityLevel.NORMAL)
     @Story("Test Case 12")
     @Description("Проверка сортировки товаров в каталоге по цене от меньшей к большей")
@@ -42,7 +42,7 @@ public class SortTest extends BaseTest {
                 , "$7.99");
     }
 
-    @Test(description = "Сортировка по цене")
+    @Test(description = "Сортировка по цене", priority = 7)
     @Severity(SeverityLevel.NORMAL)
     @Story("Test Case 13")
     @Description("Проверка сортировки товаров в каталоге по цене от большей к меньшей")

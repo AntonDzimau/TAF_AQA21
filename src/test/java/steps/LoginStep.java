@@ -5,15 +5,20 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pages.CataloguePage;
 import pages.LoginPage;
+import pages.TopMenuBurgerPage;
+import services.WaitsService;
 
 public class LoginStep extends BaseStep {
     LoginPage loginPage;
     CataloguePage cataloguePage;
+    WaitsService waitsService;
+
 
     public LoginStep(WebDriver driver) {
         super(driver);
         loginPage = new LoginPage(driver);
         cataloguePage = new CataloguePage(driver);
+        waitsService = new WaitsService(driver);
     }
 
     public void login(String email, String psw) {
@@ -23,10 +28,10 @@ public class LoginStep extends BaseStep {
     }
 
     @Step
-    public LoginPage logout() throws InterruptedException {
-        cataloguePage.topMenuBurgerPage.openBurgerMenu();
-        Thread.sleep(300);
-        cataloguePage.topMenuBurgerPage.getLogoutLink().click();
+    public LoginPage logout() {
+        cataloguePage.headerPage.openBurgerMenu();
+        waitsService.waitForVisibility(cataloguePage.headerPage.topMenuBurgerPage.logoutLink);
+        cataloguePage.headerPage.topMenuBurgerPage.logoutLink.click();
         return loginPage;
     }
 

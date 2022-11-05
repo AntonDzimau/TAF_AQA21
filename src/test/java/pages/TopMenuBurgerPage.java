@@ -4,36 +4,22 @@ import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class TopMenuBurgerPage extends BasePage {
-    private final By logoutLinkLocator = By.linkText("Logout".toUpperCase());
-    private final By allItemsLinkLocator = By.linkText("All Items".toUpperCase());
-    private final By openBurgerMenuButtonLocator = By.id("react-burger-menu-btn");
+    @FindBy(linkText = "LOGOUT")
+    public WebElement logoutLink;
+    @FindBy(linkText = "ALL ITEMS")
+    public WebElement allItemsLink;
+    @FindBy(id = "react-burger-cross-btn")
+    public WebElement closeBurgerMenuButton;
 
     public TopMenuBurgerPage(WebDriver driver) {
         super(driver);
     }
 
-    @Override
-    protected By getPageIdentifier() {
-        return openBurgerMenuButtonLocator;
-    }
-
-
-    public WebElement getOpenBurgerMenuButton() {
-        return driver.findElement(openBurgerMenuButtonLocator);
-    }
-
-    public WebElement getLogoutLink() {
-        return driver.findElement(logoutLinkLocator);
-    }
-
-    public WebElement getAllItemsLink() {
-        return driver.findElement(allItemsLinkLocator);
-    }
-
-    public void openBurgerMenu() {
-        getOpenBurgerMenuButton().click();
+    public void closeBurgerMenu() {
+        closeBurgerMenuButton.click();
     }
 
 }

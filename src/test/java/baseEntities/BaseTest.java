@@ -8,8 +8,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import services.BrowsersService;
-import steps.CartStep;
+import steps.AddItemToCartStep;
 import steps.LoginStep;
+import steps.RemoveItemFromCartStep;
 import steps.SortStep;
 import utils.InvokedListener;
 
@@ -19,7 +20,8 @@ public class BaseTest {
     protected WebDriver driver;
     protected LoginStep loginStep;
     protected SortStep sortStep;
-    protected CartStep cartStep;
+    protected AddItemToCartStep addItemToCartStep;
+    protected RemoveItemFromCartStep removeItemFromCartStep;
 
     @BeforeMethod
     @Description("Настройка")
@@ -30,7 +32,8 @@ public class BaseTest {
 
         loginStep = new LoginStep(driver);
         sortStep = new SortStep(driver);
-        cartStep = new CartStep(driver);
+        addItemToCartStep = new AddItemToCartStep(driver);
+        removeItemFromCartStep = new RemoveItemFromCartStep(driver);
     }
 
     @AfterMethod

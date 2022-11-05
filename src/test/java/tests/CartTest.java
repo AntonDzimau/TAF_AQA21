@@ -6,19 +6,21 @@ import configuration.ReadProperties;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.CartPage;
+import pages.HeaderPage;
 
 @Features(value = {@Feature(value = "Возможность добавления товаров в корзину."), @Feature(value = "Возможность удаления товаров из корзины.")})
 public class CartTest extends BaseTest {
 
-    @Test(description = "Открытие корзины")
+    @Test(description = "Открытие корзины", priority = 6)
     @Story("Test Case 1")
     @Description("Проверка возможности открытия корзины")
     public void openCartTest() {
         loginStep.loginSuccessful(ReadProperties.usernameStandard(), ReadProperties.password());
-        Assert.assertTrue(cartStep.goToCartPage().isPageOpened());
+        Assert.assertTrue(new CartPage(driver).cartLabel.isDisplayed());
     }
 
-    @Test(description = "Добавление одного товара в корзину")
+    @Test(description = "Добавление одного товара в корзину", priority = 6)
     @Issue("?selectedIssue=AQA21-37")
     @TmsLink("/QQZe9/4588w")
     @Severity(SeverityLevel.CRITICAL)
@@ -26,31 +28,28 @@ public class CartTest extends BaseTest {
     @Description("Проверка возможности добавления Sauce Labs Backpack в корзину")
     public void addBackpackToCartTest() {
         loginStep.loginSuccessful(ReadProperties.usernameStandard(), ReadProperties.password());
-        cartStep.addItemToCart(ReadItemsProperties.getIdToAddBackPack());
-        Assert.assertEquals(cartStep.getQuantityOfItemsInCartLabel(), "1");
-        /** Правильный ожидаемый результат */
-        //Assert.assertEquals(cartStep.getNameOfItemsInCart(), "Sauce Labs Backpack");
-        /** Неверный ожидаемый результат, изменен специально, чтобы появился баг*/
-        Assert.assertEquals(cartStep.getNameOfItemsInCart(), "Sauce Backpack");
+        addItemToCartStep.addItemToCart(ReadItemsProperties.getIdToAddBackPack());
+        Assert.assertEquals(new HeaderPage(driver).shoppingCartBadge.getText(), "1");
+        Assert.assertTrue(new CartPage(driver).cartItemsName.get(0).getText().contains("Sauce Labs Backpack"));
     }
 
-    @Test(description = "Добавление всех товаров в корзину")
+    @Test(description = "Добавление всех товаров в корзину", priority = 6)
     @Story("Test Case 3")
     @Description("Проверка возможности добавления всех товаров из каталога в корзину")
     public void addAllItemsToCart() {
         loginStep.loginSuccessful(ReadProperties.usernameStandard(), ReadProperties.password());
-        cartStep.addAllItemsToCart();
-        Assert.assertEquals(cartStep.getQuantityOfItemsInCartLabel(), "6");
-        Assert.assertEquals(cartStep.getQuantityOfItemsInCartPage(), "6");
+        addItemToCartStep.addAllItemsToCart();
+        Assert.assertEquals(new HeaderPage(driver).shoppingCartBadge.getText(), "6");
+        Assert.assertEquals(new CartPage(driver).cartItemsName.size() + "", "6");
     }
 
-    @Test(description = "Удаление одного товара из корзины")
+    @Test(description = "Удаление одного товара из корзины", priority = 6)
     @Severity(SeverityLevel.CRITICAL)
     @Story("Test Case 4")
     @Description("Проверка возможности удаления Sauce Labs Backpack из корзины")
     public void removeBackpackFromCartPageTest() {
         addBackpackToCartTest();
-        cartStep.removeItemFromCartPage(ReadItemsProperties.getIdToRemoveBackPack());
-        Assert.assertEquals(cartStep.goToCartPage().getCartItemNames().size() + "", "0");
+        removeItemFromCartStep.removeItemFromCartPage(ReadItemsProperties.getIdToRemoveBackPack());
+        Assert.assertEquals(new CartPage(driver).cartItemsName.size(), 0);
     }
 }

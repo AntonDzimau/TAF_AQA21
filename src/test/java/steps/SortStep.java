@@ -16,12 +16,12 @@ public class SortStep extends BaseStep {
     @Step
     public String setSortByAlphabet(String value) {
         cataloguePage.selectMenu().selectByValue(value);
-        return cataloguePage.getFirstItemByName().getText();
+        return cataloguePage.firstItemByName.getText();
     }
 
     @Step
     public String setSortByPrice(String value) {
         cataloguePage.selectMenu().selectByValue(value);
-        return cataloguePage.getFirstItemByPrice().getText();
+        return cataloguePage.firstItemByPrice.getText();
     }
 }

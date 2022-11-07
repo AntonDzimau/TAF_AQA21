@@ -20,6 +20,7 @@ public class BaseTest {
     protected EditProjectStep editProjectStep;
     protected AddTestCaseStep addTestCaseStep;
     protected RemoveProjectStep removeProjectStep;
+    protected AddMilestoneStep addMilestoneStep;
 
     @BeforeMethod
     @Description("Настройка")
@@ -33,6 +34,7 @@ public class BaseTest {
         editProjectStep = new EditProjectStep(driver);
         addTestCaseStep = new AddTestCaseStep(driver);
         removeProjectStep = new RemoveProjectStep(driver);
+        addMilestoneStep = new AddMilestoneStep(driver);
     }
 
     @AfterMethod

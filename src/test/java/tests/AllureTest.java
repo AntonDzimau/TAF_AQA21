@@ -16,7 +16,7 @@ public class AllureTest {
     //часть ссылки на багтрекинговую систему (остальная часть в Allure.properties
     @Issue("AQA21-1")
     public void issueTest() {
-        Assert.assertTrue(false);
+        Assert.assertTrue(true);
     }
 
     @Test

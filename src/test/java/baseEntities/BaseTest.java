@@ -1,36 +1,41 @@
 package baseEntities;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import configuration.ReadProperties;
-import io.qameta.allure.Description;
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import services.BrowsersService;
-import steps.LoginStep;
-import utils.InvokedListener;
+import org.testng.annotations.BeforeSuite;
 
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 
-@Listeners(InvokedListener.class)
 public class BaseTest {
-    protected WebDriver driver;
-    protected LoginStep loginStep;
 
-    @BeforeMethod
-    @Description("Настройка")
-    public void setUp(ITestContext iTestContext) {
-        driver = new BrowsersService().getDriver();
-        iTestContext.setAttribute("driver", driver);
-        driver.get(ReadProperties.getUrl());
-
-        loginStep = new LoginStep(driver);
+    @BeforeSuite
+    public void setUp(){
+        //настройка allure скриншотов у Селенида
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                //создание скриншотов
+                .screenshots(true)
+                //сохранение ДОМ модели
+                .savePageSource(true)
+        );
+        //какой браузер поднимать
+        Configuration.browser = ReadProperties.browserName();
+//дефолтный урл, который откроется при выполнении команды open
+        Configuration.baseUrl = ReadProperties.getUrl();
+        //изменяем дефолтный таймаут для ожидания
+        Configuration.timeout = 8000;
+        //быстрый ввод данных
+        Configuration.fastSetValue = true;
+        //запускать в невидимом режиме?
+        //Configuration.headless = true;
+        Configuration.browserSize = "1280x960";
+        //Configuration.reportsFolder = "target/";
     }
 
     @AfterMethod
-    public void TearDown() {
-        driver.quit();
+    public void tearDown(){
+        closeWebDriver();
     }
-
-
 }

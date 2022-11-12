@@ -7,32 +7,27 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
-    // 1. Блок описания селекторов для элементов
-    private final By emailInputLocator = By.id("name");
+    private final By usernameInputLocator = By.id("user-name");
     private final By pswInputLocator = By.id("password");
-    private final By loginButtonLocator = By.id("button_primary");
-    private final By errorTextLocator = By.className("error-text");
+    private final By loginButtonLocator = By.id("login-button");
+    private final By errorTextLocator = By.xpath("//h3[@data-test='error']");
 
+    public SelenideElement getUserNameInput() {
+        return $(usernameInputLocator).shouldBe(Condition.visible);
+    }
 
-    // 3. Блок атомарных методов
-    public SelenideElement getEmailInput() {
-        return $(emailInputLocator).shouldBe(Condition.visible);
+    public void setUsername(String value) {
+        $(usernameInputLocator).shouldBe(Condition.visible).setValue(value);
     }
-    public SelenideElement getPswInput() {
-        return $(pswInputLocator).shouldBe(Condition.visible);
-    }
-    public SelenideElement getLoginButton() {
-        return $(loginButtonLocator).shouldBe(Condition.visible);
-    }
-    public void setEmail(String value) {
-        getEmailInput().setValue(value);
-    }
+
     public void setPsw(String value) {
-        getPswInput().setValue(value);
+        $(pswInputLocator).shouldBe(Condition.visible).setValue(value);
     }
+
     public void clickLoginButton() {
-        getLoginButton().click();
+        $(loginButtonLocator).shouldBe(Condition.visible).click();
     }
+
     public SelenideElement getErrorTextElement() {
         return $(errorTextLocator).shouldBe(Condition.visible);
     }

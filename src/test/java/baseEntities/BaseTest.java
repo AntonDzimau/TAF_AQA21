@@ -5,37 +5,45 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import configuration.ReadProperties;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import steps.CartStep;
+import steps.LoginStep;
+import steps.SortStep;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
 
+    public LoginStep loginStep;
+    public CartStep cartStep;
+    public SortStep sortStep;
+
     @BeforeSuite
-    public void setUp(){
-        //настройка allure скриншотов у Селенида
+    public void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
-                //создание скриншотов
                 .screenshots(true)
-                //сохранение ДОМ модели
                 .savePageSource(true)
         );
-        //какой браузер поднимать
         Configuration.browser = ReadProperties.browserName();
-//дефолтный урл, который откроется при выполнении команды open
         Configuration.baseUrl = ReadProperties.getUrl();
-        //изменяем дефолтный таймаут для ожидания
         Configuration.timeout = 8000;
-        //быстрый ввод данных
-        Configuration.fastSetValue = true;
-        //запускать в невидимом режиме?
-        //Configuration.headless = true;
+        Configuration.fastSetValue = false;
         Configuration.browserSize = "1280x960";
+        //Configuration.headless = true;
         //Configuration.reportsFolder = "target/";
     }
 
+    @BeforeMethod
+    public void setUpSteps() {
+        loginStep = open("", LoginStep.class);
+        cartStep = open("", CartStep.class);
+        sortStep = open("", SortStep.class);
+    }
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         closeWebDriver();
     }
 }

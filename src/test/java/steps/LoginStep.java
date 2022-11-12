@@ -1,42 +1,42 @@
 package steps;
 
 import io.qameta.allure.Step;
-import pages.DashboardPage;
+import pages.CataloguePage;
 import pages.LoginPage;
 
 import static com.codeborne.selenide.Selenide.page;
 
 public class LoginStep {
     LoginPage loginPage;
+    CataloguePage cataloguePage;
 
     public LoginStep() {
         loginPage = new LoginPage();
+        cataloguePage = new CataloguePage();
     }
 
-    //просто метод для логина, мы хз какие данные и что вводится, корректно или нет
     @Step
-    public void login(String email, String psw) {
-        loginPage.setEmail(email);
+    public void login(String username, String psw) {
+        loginPage.setUsername(username);
         loginPage.setPsw(psw);
         loginPage.clickLoginButton();
     }
 
-    //помечаем этой аннотацией, чтобы в отчете были степы, то есть более подробно описывался отчет
     @Step
-    public DashboardPage loginSuccessful(String email, String psw) {
+    public CataloguePage loginSuccessful(String email, String psw) {
         login(email, psw);
-
-        return page(DashboardPage.class);
+        return page(CataloguePage.class);
     }
 
     @Step
     public LoginPage loginIncorrect(String email, String psw) {
         login(email, psw);
-
         return  page(LoginPage.class);
     }
 
-    public void logout() {
+    @Step
+    public LoginPage logout() {
+        cataloguePage.headerPage.openBurgerMenu().logout();
+        return page(LoginPage.class);
     }
-
 }

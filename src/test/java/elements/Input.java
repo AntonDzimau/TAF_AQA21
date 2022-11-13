@@ -35,5 +35,8 @@ public class Input {
         clear();
         sendKeys(newValue);
     }
+    public boolean isDisplayed(){
+        return uiElement.isDisplayed();
+    }
 
 }

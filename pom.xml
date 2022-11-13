@@ -20,6 +20,7 @@
         <webdrivermanager.version>5.2.1</webdrivermanager.version>
         <allure.version>2.19.0</allure.version>
         <lombok.version>1.18.24</lombok.version>
+        <cucumber.version>7.3.4</cucumber.version>
         <test.suite.filename>general.xml</test.suite.filename>
     </properties>
 
@@ -55,6 +56,21 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cucumber.version}</version>
         </dependency>
     </dependencies>
 

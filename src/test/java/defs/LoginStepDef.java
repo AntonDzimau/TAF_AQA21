@@ -7,10 +7,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import pages.DashboardPage;
-import pages.LoginPage;
-import services.WebDriverFactory;
-import steps.LoginStep;
 
 public class LoginStepDef extends BaseCucumberTest {
     private BaseCucumberTest baseCucumberTest;
@@ -25,38 +21,37 @@ public class LoginStepDef extends BaseCucumberTest {
 
     @Given("The Login page is open")
     public void theLoginPageIsOpen() {
-        WebDriverFactory.getDriver().get(ReadProperties.getUrl());
+        driver.get(ReadProperties.getUrl());
+        Assert.assertTrue(loginPage.isPageOpened());
     }
 
     @When("User logins with correct credentials \\(login - {string}, password - {string})")
     public void userLoginsWithCorrectCredentials(String username, String password) {
-        LoginStep loginStep = new LoginStep(WebDriverFactory.getDriver());
         loginStep.loginSuccessful(username, password);
     }
 
     @When("User logins with incorrect password \\(login - {string}, password - {string})")
     public void userLoginsWithIncorrectPasswordLoginPassword(String username, String password) {
-        LoginStep loginStep = new LoginStep(WebDriverFactory.getDriver());
         loginStep.loginIncorrect(username, password);
     }
 
     @Then("Dashboard page is displayed")
     public void dashboardPageIsDisplayed() {
-        Assert.assertTrue(new DashboardPage(WebDriverFactory.getDriver()).isPageOpened());
+        Assert.assertTrue(dashboardPage.isPageOpened());
     }
 
     @Then("Login page is still displayed")
     public void loginPageIsDisplayed() {
-        Assert.assertTrue(new LoginPage(WebDriverFactory.getDriver()).isPageOpened());
+        Assert.assertTrue(loginPage.isPageOpened());
     }
 
     @Then("The error text \\({string}) appeared on the page")
     public void errorTextIsDisplayed(String errorText) {
-        Assert.assertEquals(new LoginPage(WebDriverFactory.getDriver()).getErrorTextElement().getText(), errorText);
+        Assert.assertEquals(loginPage.getErrorTextElement().getText(), errorText);
     }
 
     @After
     public void tearDown() {
-        WebDriverFactory.getDriver().quit();
+        driver.quit();
     }
 }

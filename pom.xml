@@ -21,7 +21,7 @@
         <allure.version>2.19.0</allure.version>
         <lombok.version>1.18.24</lombok.version>
         <cucumber.version>7.3.4</cucumber.version>
-        <test.suite.filename>general.xml</test.suite.filename>
+        <test.suite.filename>testng.xml</test.suite.filename>
     </properties>
 
     <dependencies>
@@ -87,8 +87,7 @@
                     <!--подключение файла для дефолтного запуска из консоли, из консоли запускается файл, который указан в теге
                     если этой секции нет, запустятся ВСЕ тесты в проекте-->
                     <suiteXmlFiles>
-                        <!--<suiteXmlFile>target/test-classes/${test.suite.filename}</suiteXmlFile>-->
-                        <!--<suiteXmlFile>target/test-classes/${xmlSuiteFilename}</suiteXmlFile>-->
+                        <suiteXmlFile>target/test-classes/${test.suite.filename}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>

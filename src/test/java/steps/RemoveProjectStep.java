@@ -3,9 +3,7 @@ package steps;
 import baseEntities.BaseStep;
 import entities.ProjectsEntities;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.projects.AddProjectPage;
 import pages.projects.ListProjectsPage;
 
 public class RemoveProjectStep extends BaseStep {
@@ -32,4 +30,14 @@ public class RemoveProjectStep extends BaseStep {
         return new ListProjectsPage(driver);
     }
 
+    @Step
+    public ListProjectsPage removeAllProjects() {
+        openPageByUrl();
+        for (int i = listProjectsPage.getListOfProjects().getListOfRows().size(); i > 1; i--) {
+            listProjectsPage.getListOfProjects().getRow(1).getCell(2).getLinkFromCell().click();
+            listProjectsPage.getCheckboxForRemoval().setFlag();
+            listProjectsPage.getAcceptRemovalButton().click();
+        }
+        return new ListProjectsPage(driver);
+    }
 }

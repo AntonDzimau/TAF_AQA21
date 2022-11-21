@@ -38,9 +38,9 @@ public class AddProjectStep extends BaseStep {
     public ListProjectsPage addNewProjectByRadioName() {
         openPageByUrl();
         addProjectPage.getNameInput().sendKeys(projectsEntities.testProject2.getName());
-        addProjectPage.getAnnouncementTextarea().sendKeys(projectsEntities.testProject1.getAnnouncement());
-        addProjectPage.getShowAnnouncementCheckBox().flag(projectsEntities.testProject1.isShowAnnouncement());
-        addProjectPage.getRadioButton().getRadioOption(projectsEntities.testProject1.getType()).setByName();
+        addProjectPage.getAnnouncementTextarea().sendKeys(projectsEntities.testProject2.getAnnouncement());
+        addProjectPage.getShowAnnouncementCheckBox().flag(projectsEntities.testProject2.isShowAnnouncement());
+        addProjectPage.getRadioButton().getRadioOption(projectsEntities.testProject2.getType()).setByName();
         addProjectPage.getAcceptButton().click();
         return new ListProjectsPage(driver);
     }

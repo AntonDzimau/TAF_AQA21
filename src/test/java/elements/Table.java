@@ -73,7 +73,7 @@ public class Table {
         return uiElement.findUIElements(By.tagName("th"));
     }
 
-    private ArrayList<TableRow> getListOfRows() {
+    public ArrayList<TableRow> getListOfRows() {
         ArrayList<TableRow> list = new ArrayList<>();
         for (WebElement element : uiElement.findElements(By.tagName("tr"))) {
             list.add(new TableRow(driver, element));
@@ -81,9 +81,19 @@ public class Table {
         return list;
     }
 
-    public TableRow getRow(int rowNumber) {
+/*    public TableRow getRow(int rowNumber) {
         ArrayList<UIElement> list = uiElement.findUIElements(By.tagName("tr"));
         return new TableRow(driver, list.get(rowNumber));
+    }*/
+
+    public TableRow getRow(int rowNumber) {
+        TableRow targetRow = null;
+        for (int i = 0; i < getListOfRows().size(); i++) {
+            if (i == rowNumber){
+                targetRow = getListOfRows().get(i);
+            }
+        }
+        return targetRow;
     }
 
     public TableRow getRow(String value) {

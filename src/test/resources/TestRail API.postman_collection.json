@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "d346dca6-6f12-406f-8a1b-da865809422b",
+		"name": "TestRail API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24419104"
+	},
+	"item": [
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "Get Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}index.php?/api/v2/get_projects",
+							"host": [
+								"{{base_url}}index",
+								"php"
+							],
+							"query": [
+								{
+									"key": "/api/v2/get_projects",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}index.php?/api/v2/get_project/{{project_id}}",
+							"host": [
+								"{{base_url}}index",
+								"php"
+							],
+							"query": [
+								{
+									"key": "/api/v2/get_project/{{project_id}}",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Czechau Project\",\r\n    \"announcement\": \"Welcome to Czechau's project\",\r\n    \"show_announcement\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}index.php?/api/v2/add_project",
+							"host": [
+								"{{base_url}}index",
+								"php"
+							],
+							"query": [
+								{
+									"key": "/api/v2/add_project",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "milestones",
+			"item": [
+				{
+					"name": "Create Milestone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Czechau's first milestone\",\r\n    \"description\": \"This is my first milestone which created with Postman's help\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}index.php?/api/v2/add_milestone/{{project_id}}",
+							"host": [
+								"{{base_url}}index",
+								"php"
+							],
+							"query": [
+								{
+									"key": "/api/v2/add_milestone/{{project_id}}",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Milestone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}index.php?/api/v2/get_milestone/{{milestone_id}}",
+							"host": [
+								"{{base_url}}index",
+								"php"
+							],
+							"query": [
+								{
+									"key": "/api/v2/get_milestone/{{milestone_id}}",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Milestone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"description\": \"This is a NEW description of my first milestone\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}index.php?/api/v2/update_milestone/{{milestone_id}}",
+							"host": [
+								"{{base_url}}index",
+								"php"
+							],
+							"query": [
+								{
+									"key": "/api/v2/update_milestone/{{milestone_id}}",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Milestone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=utf-8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}index.php?/api/v2/delete_milestone/{{milestone_id}}",
+							"host": [
+								"{{base_url}}index",
+								"php"
+							],
+							"query": [
+								{
+									"key": "/api/v2/delete_milestone/{{milestone_id}}",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{psw}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{login}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -18,14 +18,40 @@ public class ProjectsTest extends BaseTest {
                         .isFoundInTable(new ProjectsEntities().testProject2.getName()));
     }
 
+    @Test (priority = 1)
+    public void addNewProject3Test() {
+        loginStep.loginSuccessful(ReadProperties.username(), ReadProperties.password());
+        addProjectStep.addNewProjectByPicture();
+        Assert.assertTrue(
+                new ListProjectsPage(driver).getListOfProjects()
+                        .isFoundInTable(new ProjectsEntities().testProject3.getName()));
+    }
+
     @Test (priority = 2)
     public void removeProject2Test() {
-        //addNewProject2Test();
         loginStep.loginSuccessful(ReadProperties.username(), ReadProperties.password());
         removeProjectStep.removeProject(new ProjectsEntities().testProject2.getName());
         Assert.assertFalse(
                 new ListProjectsPage(driver).getListOfProjects()
                         .isFoundInTable(new ProjectsEntities().testProject2.getName()));
+    }
+
+    @Test (priority = 2)
+    public void removeProject3Test() {
+        loginStep.loginSuccessful(ReadProperties.username(), ReadProperties.password());
+        removeProjectStep.removeProject(new ProjectsEntities().testProject3.getName());
+        Assert.assertFalse(
+                new ListProjectsPage(driver).getListOfProjects()
+                        .isFoundInTable(new ProjectsEntities().testProject3.getName()));
+    }
+
+    @Test (priority = 2)
+    public void removeAllProjectsTest() {
+        loginStep.loginSuccessful(ReadProperties.username(), ReadProperties.password());
+        removeProjectStep.removeAllProjects();
+        Assert.assertEquals(
+                new ListProjectsPage(driver).getListOfProjects().getListOfRows().size()
+                , 0);
     }
 
     @Test (priority = 3)

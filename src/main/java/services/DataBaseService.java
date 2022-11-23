@@ -1,5 +1,8 @@
 package services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 
 public class DataBaseService {
@@ -7,6 +10,7 @@ public class DataBaseService {
     static final String USER = "postgres";
     static final String PASS = "1863";
 
+    Logger logger = LoggerFactory.getLogger(DataBaseService.class);
     Connection connection;
     Statement statement;
 
@@ -26,18 +30,18 @@ public class DataBaseService {
             throw new RuntimeException(e);
         }
         if (connection != null){
-            System.out.println("Your connecting to database is success!");
+            logger.warn("Your connecting to database is success!");
         } else{
-            System.out.println("Something wrong!");
+            logger.warn("Something wrong!");
         }
     }
 
     public  void closeConnection(){
         try {
             connection.close();
-            System.out.println("Your connection was successfully broken");
+            logger.warn("Your connection was successfully broken");
         } catch (SQLException e) {
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
     }
 
@@ -46,7 +50,7 @@ public class DataBaseService {
             try {
                 statement = this.connection.createStatement();
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                logger.error(e.getMessage());
             }
         }
         return statement;
@@ -56,7 +60,7 @@ public class DataBaseService {
         try {
             getStatement().execute(sql);
         } catch (SQLException e) {
-            System.out.println(e);
+            logger.warn(e.getMessage());
 
         }
     }

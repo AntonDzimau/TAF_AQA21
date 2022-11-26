@@ -3,7 +3,7 @@ package tests.api;
 import baseEntities.BaseAPITest;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
-import models.Project;
+import models.ProjectBuilder;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -19,7 +19,7 @@ public class TestRailAPITest1 extends BaseAPITest {
     @Test
     public void addProject1Test() {
         String endpoint = "index.php?/api/v2/add_project";
-        Project expectedProject = Project.builder()
+        ProjectBuilder expectedProjectBuilder = ProjectBuilder.builder()
                 .name("Project XXXX")
                 .announcement("LOREM IPSUM")
                 .isShowAnnouncement(true)
@@ -32,10 +32,10 @@ public class TestRailAPITest1 extends BaseAPITest {
                                 "  \"show_announcement\": %b,\n" +
                                 "  \"suite_mode\" : %d\n" +
                                 "}",
-                        expectedProject.getName(),
-                        expectedProject.getAnnouncement(),
-                        expectedProject.isShowAnnouncement(),
-                        expectedProject.getTypOfProject()
+                        expectedProjectBuilder.getName(),
+                        expectedProjectBuilder.getAnnouncement(),
+                        expectedProjectBuilder.isShowAnnouncement(),
+                        expectedProjectBuilder.getTypOfProject()
                 ))
                 .when()
                 .post(endpoint)
@@ -47,15 +47,15 @@ public class TestRailAPITest1 extends BaseAPITest {
     @Test
     public void addProject2Test() {
         String endpoint = "index.php?/api/v2/add_project";
-        Project expectedProject = Project.builder()
+        ProjectBuilder expectedProjectBuilder = ProjectBuilder.builder()
                 .name("Project LLL")
                 .announcement("LOREM IPSUM")
                 .isShowAnnouncement(true)
                 .typOfProject(1)
                 .build();
         Map<String, Object> jsonMap = new HashMap<>();
-        jsonMap.put("name", expectedProject.getName());
-        jsonMap.put("suite_mode", expectedProject.getTypOfProject());
+        jsonMap.put("name", expectedProjectBuilder.getName());
+        jsonMap.put("suite_mode", expectedProjectBuilder.getTypOfProject());
 
         given()
                 .body(jsonMap)
@@ -69,7 +69,7 @@ public class TestRailAPITest1 extends BaseAPITest {
     @Test
     public void addProject3Test() {
         String endpoint = "index.php?/api/v2/add_project";
-        Project expectedProject = Project.builder()
+        ProjectBuilder expectedProjectBuilder = ProjectBuilder.builder()
                 .name("Project AAA")
                 .announcement("LOREM IPSUM")
                 .isShowAnnouncement(true)
@@ -77,7 +77,7 @@ public class TestRailAPITest1 extends BaseAPITest {
                 .build();
 
         given()
-                .body(expectedProject, ObjectMapperType.GSON)
+                .body(expectedProjectBuilder, ObjectMapperType.GSON)
                 .log().body()
                 .when()
                 .post(endpoint)
@@ -90,7 +90,7 @@ public class TestRailAPITest1 extends BaseAPITest {
     public void addProject4Test() {
 
         String endpoint = "index.php?/api/v2/add_project";
-        Project expectedProject = Project.builder()
+        ProjectBuilder expectedProjectBuilder = ProjectBuilder.builder()
                 .name("Project BBB")
                 .announcement("LOREM IPSUM")
                 .isShowAnnouncement(true)
@@ -98,7 +98,7 @@ public class TestRailAPITest1 extends BaseAPITest {
                 .build();
 
         projectID = given()
-                .body(expectedProject, ObjectMapperType.GSON)
+                .body(expectedProjectBuilder, ObjectMapperType.GSON)
                 .log().body()
                 .when()
                 .post(endpoint)
@@ -112,7 +112,7 @@ public class TestRailAPITest1 extends BaseAPITest {
     @Test
     public void addProject5Test() {
         String endpoint = "index.php?/api/v2/add_project";
-        Project expectedProject = Project.builder()
+        ProjectBuilder expectedProjectBuilder = ProjectBuilder.builder()
                 .name("Project CCC")
                 .announcement("LOREM IPSUM")
                 .isShowAnnouncement(true)
@@ -120,7 +120,7 @@ public class TestRailAPITest1 extends BaseAPITest {
                 .build();
 
         Response response = given()
-                .body(expectedProject, ObjectMapperType.GSON)
+                .body(expectedProjectBuilder, ObjectMapperType.GSON)
                 .log().body()
                 .when()
                 .post(endpoint)
@@ -131,19 +131,19 @@ public class TestRailAPITest1 extends BaseAPITest {
 
         Assert.assertEquals(
                 response.getBody().jsonPath().get("name")
-                , expectedProject.getName());
+                , expectedProjectBuilder.getName());
     }
 
     @Test(dependsOnMethods = "addProject4Test")
     public void updateProject1Test() {
         String endpoint = "index.php?/api/v2/update_project/{project_id}";
-        Project updateProject = Project.builder()
+        ProjectBuilder updateProjectBuilder = ProjectBuilder.builder()
                 .name("New Project BBB")
                 .build();
 
 
         given()
-                .body(updateProject, ObjectMapperType.GSON)
+                .body(updateProjectBuilder, ObjectMapperType.GSON)
                 .pathParam("project_id", projectID)
                 .when()
                 .post(endpoint)

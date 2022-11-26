@@ -1,26 +1,28 @@
 package tests.db;
 
 import baseEntities.BaseAPITest;
-import dbEntities.CustomersTable;
-import models.CustomerBuilder;
+import dbEntities.ProjectsTable;
 import org.testng.annotations.Test;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class simpleDataBaseTest extends BaseAPITest {
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
+
+public class ProjectDataBaseTest extends BaseAPITest {
+/*
     @Test
     public void simpleDBTest(){
         CustomersTable customersTable = new CustomersTable(dataBaseService);
         customersTable.dropTable();
         customersTable.createCustomersTable();
 
-                customersTable.addCustomer(CustomerBuilder.builder()
-                        .firstName("Ivan")
-                        .lastName("Ivanov")
-                        .email("iviv@test.com")
-                        .age(18)
-                        .build());
+        customersTable.addCustomer(CustomerBuilder.builder()
+                .firstName("Ivan")
+                .lastName("Ivanov")
+                .email("iviv@test.com")
+                .age(18)
+                .build());
 
         customersTable.addCustomer(CustomerBuilder.builder()
                 .firstName("Petr")
@@ -52,6 +54,21 @@ public class simpleDataBaseTest extends BaseAPITest {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+    }
+*/
+
+    @Test
+    public void addNewProjectToDBTest() {
+        //projectsTable.dropTable();
+        projectsTable.createProjectsTable();
+        projectsTable.addProject(projectsEntities.projectBuilderType1);
+
+        ResultSet rs =  projectsTable.getProjects();
+
+
+        projectAdapter.addProject(projectsEntities.projectBuilderType1);
+
 
     }
 

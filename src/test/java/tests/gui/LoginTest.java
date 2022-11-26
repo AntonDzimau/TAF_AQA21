@@ -12,12 +12,12 @@ import pages.projects.UpdateProjectPage;
 public class LoginTest extends BaseTest {
 
 
-    /*@Test
+    @Test
     public void successLoginTest() {
         loginStep.login(ReadProperties.username(), ReadProperties.password());
         Assert.assertTrue(new DashboardPage(driver).isPageOpened());
     }
-
+/*
     @Test
     public void successLoginTest1() {
         Assert.assertTrue(

@@ -24,5 +24,4 @@ public class RadioButton {
         ArrayList<UIElement> list = uiElement.findUIElements(By.className("add-project-row"));
         return new RadioButtonOption(driver, list.get(numberOfVariant - 1));
     }
-
 }

@@ -54,5 +54,4 @@ public class AddProjectStep extends BaseStep {
         addProjectPage.getAcceptButton().click();
         return new ListProjectsPage(driver);
     }
-
 }
